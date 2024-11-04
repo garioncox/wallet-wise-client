@@ -1,74 +1,220 @@
 # Final Project - Advanced Front End
-
 ## Financial Planning System / Budget Tracker
 
-1. An elevator pitch of your project (something you can say in less than 1 minute)
-   - This project is a financial planning system. No systems I've seen has completely fit my needs, so I want to build one that does.
-   - I want to be able to create categories and sub-categories based on transaction types
-     - (e.g. necessities as a large category, transportation costs as a sub category).
-   - Then want input my current balance and income + tag them.
-   - Same with expenses- I want to tag an expense with one or more categories and one or more subcategories.
-     - (e.g. buying a soda will count as "food", but not "necessity").
-2. The names of the contributors (if you are working with a partner)
-   - Garion Cox
-3. A rough list of features (this needs to be large enough to satisfy the "scope" requirements)
-   - Pages:
-     1. Dashboard - for viewing quick stats
-     2. Settings - for turning on and off features, maybe even changing theme
-     3. User Profile - to change credentials, profile picture, email, etc.
-     4. Recurring Transactions - set up Bills or income to be auto populated after a date
-     5. Reports - a more in depth stats page
-     6. Transaction history + management page - to see, add, delete, update transactions
-     7. Income tracker
-     8. Budget setup page - create tags and subtags here
-     9. Alert page - set up email alerts (?)
-     10. Cash flow analysis page - show trends
-4. A list of new things you will need to do to accomplish your project
-   - Local storage - for storing transactions + budgets
-   - Client side state stores - for storing a cache of data from an API
-   - Toasts
-   - Error Handling - for if the API is down or an unhandled error occurs
-   - Network Calls - to a server API. Fetching user data, posting new tasks, etc.
-   - Typescript
-   - CI / CD pipeline - automatic testing + linting + deploy to k8s
-   - Authentication and Authorization - must authorize before viewing user's data
-   - Reusable form input components - text input, select input, date component
-   - Reusable layout components - modal wrapper, generic card for data, table
 
-Items by week:
+This project is a financial planning system. No systems I've seen has completely fit my needs, so I want to build one that does. 
 
-1.  Week 1
-    - [ ] Local storage - for storing transactions + budgets
-    - [ ] Network Calls - to a server API. Fetching user data, posting new tasks, etc.
-    - [ ] Error Handling - for if the API is down or an unhandled error occurs
-    - [ ] Figma for Dashboard + Transaction History Input page
-    - [ ] Tailwind config / standardization
-2.  Week 2
-    - [ ] Client side state stores - for storing a cache of data from an API
-    - [ ] CI / CD pipeline - automatic testing + linting + deploy to k8s
-    - [ ] Seed db with fake data
-    - [ ] Dashboard Page (Page 1)
-    - [ ] Reusable input components for Input page
-    - [ ] Toasts
-    - [ ] Figma for User Profile Page, Transaction management page
-3.  Week 3
-    - [ ] Authentication and Authorization
-    - [ ] Transaction History Input page (Page 2)
-    - [ ] User Profile (Page 3)
-    - [ ] Transaction management page (Page 4)
-    - [ ] Figma for Settings Page
-4.  Week 4
-    - [ ] Settings Page (Page 5)`
-    - [ ] Reusable layout components - modal wrapper, generic card for data, table
-5.  Week 5
-    - [ ] Alert page - set up email alerts (?)
-6.  Week 6
-7.  Week 7
-8.  Week 8
+I want to be able to create categories and sub-categories based on transaction types (e.g. necessities as a large category, transportation costs as a sub category), then input my current balance and income + tag them.
 
-         4) Recurring Transactions - set up Bills or income to be auto populated after a date
-         5) Reports - a more in depth stats page
-         7) Income tracker
-         8) Budget setup page - create tags and subtags here
+Same with expenses- I want to tag an expense with one or more categories and one or more subcategories. (e.g. buying a soda will count as "food", but not "necessity").
 
-         10) Cash flow analysis page - show trends
+**[I will be working on this by myself]**
+
+#
+
+The site will have these pages:
+1) Landing - for users not logged in
+2) Dashboard - for viewing quick stats
+3) Transaction Input
+4) Transaction History / Management - to quickly see, add, delete, update all transactions
+5) Budget Setup / Management - create tags and subtags here
+6) Recurring Transactions Setup / Management - set up Bills or income to be auto populated after a date
+7) Reports - a more in depth stats page
+8) Alert Setup Page - set up email alerts
+9) Settings - for turning on and off features, maybe even changing theme
+10) User Profile - to change credentials, profile picture, email, etc.
+
+
+
+# Week 1
+Goals:
+- [ ] Tailwind config / standardization
+- [ ] Create Local db
+- [ ] Seed db with fake data
+- [ ] Network Calls - to a server API for CRUD
+- [ ] Error Handling - for if the API is down or an unhandled error occurs
+
+Page work:
+- [ ] **[Figma]** Landing page
+- [ ] **[Figma]** Dashboard page
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| **5/5**   | Use of Local Storage                              |
+| 0/5   | Client side state stores                          |
+| 0/5   | Toasts / global notifications or alerts           |
+| **5/5**   | Error handling                                    |
+| **5/5**   | Network Calls                                     |
+| **5/5**   | Developer type helping (TypeScript)               |
+| 0/5   | 10+ pages/views via a router                      |
+| 0/5   | CI/CD pipeline                                    |
+| 0/9   | 3+ reusable form input components                 |
+| 0/12  | 4+ reusable layout components                     |
+| 0/10  | Authentication and user account support           |
+| 0/5   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**   | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 2
+Goals:
+- [ ] Client side state stores - TanStack
+- [ ] CI / CD pipeline - testing + linting + deploy to k8s
+- [ ] Generic input components for Input page
+- [ ] Toasts
+
+Page work:
+- [ ] Landing Page
+- [ ] Dashboard Page
+- [ ] **[Figma]** Transaction Input
+- [ ] **[Figma]** Transaction History / Management
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| 5/5   | Use of Local Storage                              |
+| **5/5**   | Client side state stores                          |
+| **5/5**   | Toasts / global notifications or alerts           |
+| 5/5   | Error handling                                    |
+| 5/5   | Network Calls                                     |
+| 5/5   | Developer type helping (TypeScript)               |
+| **1/5**   | 10+ pages/views via a router                      |
+| **5/5**   | CI/CD pipeline                                    |
+| **9/9**   | 3+ reusable form input components                 |
+| 0/12  | 4+ reusable layout components                     |
+| 0/10  | Authentication and user account support           |
+| 0/5   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 3
+Goals:
+- [ ] Authentication and Authorization
+- [ ] Generic Layout Components
+    
+Page work:
+- [ ] Transaction Input
+- [ ] Transaction History / Management
+- [ ] **[Figma]** Budget Setup / Management
+- [ ] **[Figma]** Recurring Transactions Setup / Management
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| 5/5   | Use of Local Storage                              |
+| 5/5   | Client side state stores                          |
+| 5/5   | Toasts / global notifications or alerts           |
+| 5/5   | Error handling                                    |
+| 5/5   | Network Calls                                     |
+| 5/5   | Developer type helping (TypeScript)               |
+| **2/5**   | 10+ pages/views via a router                      |
+| 5/5   | CI/CD pipeline                                    |
+| 9/9   | 3+ reusable form input components                 |
+| **12/12**  | 4+ reusable layout components                     |
+| **10/10**  | Authentication and user account support           |
+| **5/5**   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 4
+Goals:
+
+Page work:
+- [ ] Budget Setup / Management
+- [ ] Recurring Transactions Setup / Management
+- [ ] **[Figma]** In Depth Reports
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| 5/5   | Use of Local Storage                              |
+| 5/5   | Client side state stores                          |
+| 5/5   | Toasts / global notifications or alerts           |
+| 5/5   | Error handling                                    |
+| 5/5   | Network Calls                                     |
+| 5/5   | Developer type helping (TypeScript)               |
+| **3/5**   | 10+ pages/views via a router                      |
+| 5/5   | CI/CD pipeline                                    |
+| 9/9   | 3+ reusable form input components                 |
+| 12/12  | 4+ reusable layout components                     |
+| 10/10  | Authentication and user account support           |
+| 5/5   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 5
+Goals:
+
+Page work:
+- [ ] In Depth Reports
+- [ ] **[Figma]** Settings
+- [ ] **[Figma]** User Profile
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| 5/5   | Use of Local Storage                              |
+| 5/5   | Client side state stores                          |
+| 5/5   | Toasts / global notifications or alerts           |
+| 5/5   | Error handling                                    |
+| 5/5   | Network Calls                                     |
+| 5/5   | Developer type helping (TypeScript)               |
+| **3.5/5**   | 10+ pages/views via a router                      |
+| 5/5   | CI/CD pipeline                                    |
+| 9/9   | 3+ reusable form input components                 |
+| 12/12  | 4+ reusable layout components                     |
+| 10/10  | Authentication and user account support           |
+| 5/5   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 6
+Goals:
+
+Page work:
+- [ ] Settings
+- [ ] User Profile
+- [ ] **[Figma]** Alert Setup Page
+
+| Score | Technology                                        |
+|-------|---------------------------------------------------|
+| 5/5   | Use of Local Storage                              |
+| 5/5   | Client side state stores                          |
+| 5/5   | Toasts / global notifications or alerts           |
+| 5/5   | Error handling                                    |
+| 5/5   | Network Calls                                     |
+| 5/5   | Developer type helping (TypeScript)               |
+| **4.5/5**   | 10+ pages/views via a router                      |
+| 5/5   | CI/CD pipeline                                    |
+| 9/9   | 3+ reusable form input components                 |
+| 12/12  | 4+ reusable layout components                     |
+| 10/10  | Authentication and user account support           |
+| 5/5   | Authorized pages and public pages                 |
+
+| Score | Experience                                            |
+|-------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| 0/5   | 3 instances where elements reorder on smaller screens |
+
+# Week 7
+Goals:
+
+Page work:
+- [ ] Alert Setup Page
+
+# Week 8
+Goals:
+
+Page work:
+
+#
