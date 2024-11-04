@@ -26,42 +26,42 @@ The site will have these pages:
 
 
 
-# Week 1
+# Check in 1 (Nov 6)
 Goals:
 - [ ] Tailwind config / standardization
 - [ ] Create Local db
 - [ ] Seed db with fake data
 - [ ] Network Calls - to a server API for CRUD
-- [ ] Error Handling - for if the API is down or an unhandled error occurs
+- [ ] CI / CD pipeline - testing + linting + deploy to k8s
 
 Page work:
 - [ ] **[Figma]** Landing page
 - [ ] **[Figma]** Dashboard page
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| **5/5**   | Use of Local Storage                              |
-| 0/5   | Client side state stores                          |
-| 0/5   | Toasts / global notifications or alerts           |
-| **5/5**   | Error handling                                    |
-| **5/5**   | Network Calls                                     |
-| **5/5**   | Developer type helping (TypeScript)               |
-| 0/5   | 10+ pages/views via a router                      |
-| 0/5   | CI/CD pipeline                                    |
-| 0/9   | 3+ reusable form input components                 |
-| 0/12  | 4+ reusable layout components                     |
-| 0/10  | Authentication and user account support           |
-| 0/5   | Authorized pages and public pages                 |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| **5/5**    | Use of Local Storage                              |
+| 0/5        | Client side state stores                          |
+| 0/5        | Toasts / global notifications or alerts           |
+| 0/5        | Error handling                                    |
+| **1/5**    | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| 0/5        | 10+ pages/views via a router                      |
+| **3/5**    | CI/CD pipeline                                    |
+| 0/9        | 3+ reusable form input components                 |
+| 0/12       | 4+ reusable layout components                     |
+| 0/10       | Authentication and user account support           |
+| 0/5        | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**   | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 2
+# Check in 2 (Nov 9)
 Goals:
 - [ ] Client side state stores - TanStack
-- [ ] CI / CD pipeline - testing + linting + deploy to k8s
+- [ ] Error Handling - for if the API is down or an unhandled error occurs
 - [ ] Generic input components for Input page
 - [ ] Toasts
 
@@ -71,27 +71,27 @@ Page work:
 - [ ] **[Figma]** Transaction Input
 - [ ] **[Figma]** Transaction History / Management
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| 5/5   | Use of Local Storage                              |
-| **5/5**   | Client side state stores                          |
-| **5/5**   | Toasts / global notifications or alerts           |
-| 5/5   | Error handling                                    |
-| 5/5   | Network Calls                                     |
-| 5/5   | Developer type helping (TypeScript)               |
-| **1/5**   | 10+ pages/views via a router                      |
-| **5/5**   | CI/CD pipeline                                    |
-| **9/9**   | 3+ reusable form input components                 |
-| 0/12  | 4+ reusable layout components                     |
-| 0/10  | Authentication and user account support           |
-| 0/5   | Authorized pages and public pages                 |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| 0/5        | Client side state stores                          |
+| 0/5        | Toasts / global notifications or alerts           |
+| 0/5        | Error handling                                    |
+| **2/5**    | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| 0/5        | 10+ pages/views via a router                      |
+| **5/5**    | CI/CD pipeline                                    |
+| 0/9        | 3+ reusable form input components                 |
+| 0/12       | 4+ reusable layout components                     |
+| **5/10**   | Authentication and user account support           |
+| 0/5        | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**    | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 3
+# Check in 3 (Nov 13)
 Goals:
 - [ ] Authentication and Authorization
 - [ ] Generic Layout Components
@@ -102,27 +102,27 @@ Page work:
 - [ ] **[Figma]** Budget Setup / Management
 - [ ] **[Figma]** Recurring Transactions Setup / Management
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| 5/5   | Use of Local Storage                              |
-| 5/5   | Client side state stores                          |
-| 5/5   | Toasts / global notifications or alerts           |
-| 5/5   | Error handling                                    |
-| 5/5   | Network Calls                                     |
-| 5/5   | Developer type helping (TypeScript)               |
-| **2/5**   | 10+ pages/views via a router                      |
-| 5/5   | CI/CD pipeline                                    |
-| 9/9   | 3+ reusable form input components                 |
-| **12/12**  | 4+ reusable layout components                     |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| **1/5**    | Client side state stores                          |
+| **5/5**    | Toasts / global notifications or alerts           |
+| 0/5        | Error handling                                    |
+| **3/5**    | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| 0/5        | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| 0/9        | 3+ reusable form input components                 |
+| 0/12       | 4+ reusable layout components                     |
 | **10/10**  | Authentication and user account support           |
-| **5/5**   | Authorized pages and public pages                 |
+| 0/5        | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**    | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 4
+# Check in 4 (Nov 16)
 Goals:
 
 Page work:
@@ -130,27 +130,27 @@ Page work:
 - [ ] Recurring Transactions Setup / Management
 - [ ] **[Figma]** In Depth Reports
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| 5/5   | Use of Local Storage                              |
-| 5/5   | Client side state stores                          |
-| 5/5   | Toasts / global notifications or alerts           |
-| 5/5   | Error handling                                    |
-| 5/5   | Network Calls                                     |
-| 5/5   | Developer type helping (TypeScript)               |
-| **3/5**   | 10+ pages/views via a router                      |
-| 5/5   | CI/CD pipeline                                    |
-| 9/9   | 3+ reusable form input components                 |
-| 12/12  | 4+ reusable layout components                     |
-| 10/10  | Authentication and user account support           |
-| 5/5   | Authorized pages and public pages                 |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| **5/5**    | Client side state stores                          |
+| 5/5        | Toasts / global notifications or alerts           |
+| **3/5**    | Error handling                                    |
+| **5/5**    | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| 0/5        | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| **3/9**    | 3+ reusable form input components                 |
+| 0/12       | 4+ reusable layout components                     |
+| 10/10      | Authentication and user account support           |
+| 0/5        | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**    | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 5
+# Check in 5 (Nov 20)
 Goals:
 
 Page work:
@@ -158,27 +158,28 @@ Page work:
 - [ ] **[Figma]** Settings
 - [ ] **[Figma]** User Profile
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| 5/5   | Use of Local Storage                              |
-| 5/5   | Client side state stores                          |
-| 5/5   | Toasts / global notifications or alerts           |
-| 5/5   | Error handling                                    |
-| 5/5   | Network Calls                                     |
-| 5/5   | Developer type helping (TypeScript)               |
-| **3.5/5**   | 10+ pages/views via a router                      |
-| 5/5   | CI/CD pipeline                                    |
-| 9/9   | 3+ reusable form input components                 |
-| 12/12  | 4+ reusable layout components                     |
-| 10/10  | Authentication and user account support           |
-| 5/5   | Authorized pages and public pages                 |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| 5/5        | Client side state stores                          |
+| 5/5        | Toasts / global notifications or alerts           |
+| **5/5**    | Error handling                                    |
+| 5/5        | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| 0/5        | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| **9/9**    | 3+ reusable form input components                 |
+| 0/12       | 4+ reusable layout components                     |
+| 10/10      | Authentication and user account support           |
+| **3/5**    | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**    | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 6
+
+# Check in 6 (Nov 23)
 Goals:
 
 Page work:
@@ -186,35 +187,73 @@ Page work:
 - [ ] User Profile
 - [ ] **[Figma]** Alert Setup Page
 
-| Score | Technology                                        |
-|-------|---------------------------------------------------|
-| 5/5   | Use of Local Storage                              |
-| 5/5   | Client side state stores                          |
-| 5/5   | Toasts / global notifications or alerts           |
-| 5/5   | Error handling                                    |
-| 5/5   | Network Calls                                     |
-| 5/5   | Developer type helping (TypeScript)               |
-| **4.5/5**   | 10+ pages/views via a router                      |
-| 5/5   | CI/CD pipeline                                    |
-| 9/9   | 3+ reusable form input components                 |
-| 12/12  | 4+ reusable layout components                     |
-| 10/10  | Authentication and user account support           |
-| 5/5   | Authorized pages and public pages                 |
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| 5/5        | Client side state stores                          |
+| 5/5        | Toasts / global notifications or alerts           |
+| 5/5        | Error handling                                    |
+| 5/5        | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| **2/5**    | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| 9/9        | 3+ reusable form input components                 |
+| **6/12**   | 4+ reusable layout components                     |
+| 10/10      | Authentication and user account support           |
+| **5/5**    | Authorized pages and public pages                 |
 
-| Score | Experience                                            |
-|-------|-------------------------------------------------------|
-| **5/5**    | All experiences mobile friendly                       |
-| 0/5   | 3 instances where elements reorder on smaller screens |
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| 0/5        | 3 instances where elements reorder on smaller screens |
 
-# Week 7
+# Check in 7 (Nov 26)
 Goals:
 
 Page work:
 - [ ] Alert Setup Page
 
-# Week 8
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| 5/5        | Client side state stores                          |
+| 5/5        | Toasts / global notifications or alerts           |
+| 5/5        | Error handling                                    |
+| 5/5        | Network Calls                                     |
+| 0/5        | Developer type helping (TypeScript)               |
+| **4/5**    | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| 9/9        | 3+ reusable form input components                 |
+| **12/12**  | 4+ reusable layout components                     |
+| 10/10      | Authentication and user account support           |
+| 5/5        | Authorized pages and public pages                 |
+
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| 0/5        | All experiences mobile friendly                       |
+| **2/5**    | 3 instances where elements reorder on smaller screens |
+
+# Check in 8 (Dec 4)
 Goals:
 
 Page work:
 
-#
+| Score      | Technology                                        |
+|------------|---------------------------------------------------|
+| 5/5        | Use of Local Storage                              |
+| 5/5        | Client side state stores                          |
+| 5/5        | Toasts / global notifications or alerts           |
+| 5/5        | Error handling                                    |
+| 5/5        | Network Calls                                     |
+| **5/5**    | Developer type helping (TypeScript)               |
+| **5/5**    | 10+ pages/views via a router                      |
+| 5/5        | CI/CD pipeline                                    |
+| 9/9        | 3+ reusable form input components                 |
+| 12/12      | 4+ reusable layout components                     |
+| 10/10      | Authentication and user account support           |
+| 5/5        | Authorized pages and public pages                 |
+
+| Score      | Experience                                            |
+|------------|-------------------------------------------------------|
+| **5/5**    | All experiences mobile friendly                       |
+| **5/5**    | 3 instances where elements reorder on smaller screens |
