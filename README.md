@@ -31,7 +31,7 @@ Goals:
 - [ ] Tailwind config / standardization
 - [ ] Create Local db
 - [ ] Seed db with fake data
-- [ ] Network Calls - to a server API for CRUD
+- [ ] One API Call
 - [ ] CI / CD pipeline - testing + linting + deploy to k8s
 
 Page work:
@@ -60,10 +60,9 @@ Page work:
 
 # Check in 2 (Nov 9)
 Goals:
-- [ ] Client side state stores - TanStack
-- [ ] Error Handling - for if the API is down or an unhandled error occurs
-- [ ] Generic input components for Input page
-- [ ] Toasts
+- [ ] 2 more network calls
+- [ ] CI / CD Complete
+- [ ] Authentication
 
 Page work:
 - [ ] Landing Page
@@ -93,9 +92,11 @@ Page work:
 
 # Check in 3 (Nov 13)
 Goals:
-- [ ] Authentication and Authorization
-- [ ] Generic Layout Components
-    
+- [ ] 1 tanstack storage
+- [ ] Toasts integrated and shown
+- [ ] Authentication complete
+- [ ] 1 more network call
+
 Page work:
 - [ ] Transaction Input
 - [ ] Transaction History / Management
@@ -124,6 +125,10 @@ Page work:
 
 # Check in 4 (Nov 16)
 Goals:
+- [ ] 4 more tanstack state stores
+- [ ] Error boundary / handling
+- [ ] 1 more network call
+- [ ] 1 reusable input component
 
 Page work:
 - [ ] Budget Setup / Management
@@ -152,6 +157,9 @@ Page work:
 
 # Check in 5 (Nov 20)
 Goals:
+- [ ] Finish error boundary / handling
+- [ ] 2 more reusable inputs
+- [ ] Page authorization
 
 Page work:
 - [ ] In Depth Reports
@@ -181,6 +189,9 @@ Page work:
 
 # Check in 6 (Nov 23)
 Goals:
+- [ ] 4 pages complete
+- [ ] 2 reusable layout components
+- [ ] Page authorization complete
 
 Page work:
 - [ ] Settings
@@ -209,6 +220,9 @@ Page work:
 
 # Check in 7 (Nov 26)
 Goals:
+- [ ] 8 pages complete
+- [ ] 2 more reusable layout components
+- [ ] 2 pages where elements reorder on smaller screens
 
 Page work:
 - [ ] Alert Setup Page
@@ -235,8 +249,10 @@ Page work:
 
 # Check in 8 (Dec 4)
 Goals:
-
-Page work:
+- [ ] Developer type helping
+- [ ] 10 pages complete
+- [ ] All experiences mobile friendly
+- [ ] 2 more instances where elements reorder on smaller screens
 
 | Score      | Technology                                        |
 |------------|---------------------------------------------------|
