@@ -25,14 +25,14 @@ spec:
             - containerPort: 5137
           readinessProbe:
             httpGet:
-              path: /app
+              path: /
               port: 5137
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 3
           livenessProbe:
             httpGet:
-              path: /app
+              path: /
               port: 5137
             initialDelaySeconds: 15
             periodSeconds: 20
