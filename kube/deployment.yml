@@ -22,17 +22,17 @@ spec:
         - name: final-deployment
           image: garioncox/garion-final:${IMAGE_TAG}
           ports:
-            - containerPort: 5137
+            - containerPort: 80
           readinessProbe:
             httpGet:
               path: /
-              port: 5137
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 3
           livenessProbe:
             httpGet:
               path: /
-              port: 5137
+              port: 80
             initialDelaySeconds: 15
             periodSeconds: 20
