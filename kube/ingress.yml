@@ -1,0 +1,18 @@
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: final-ingress
+  namespace: garion-final
+spec:
+  rules:
+    - host: garion-final.duckdns.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: garion-final-service
+                port:
+                  number: 8080
