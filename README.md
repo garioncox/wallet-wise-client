@@ -10,6 +10,8 @@ Same with expenses- I want to tag an expense with one or more categories and one
 
 **[I will be working on this by myself]**
 
+[Link to the API page](https://github.com/garioncox/afe-final-api)
+
 #
 
 The site will have these pages:
