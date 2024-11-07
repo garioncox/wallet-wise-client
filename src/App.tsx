@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Customer } from "./Data/Customer";
 import axios from "axios";
+import LoginButton from "./Components/Auth/LoginButton";
 
 function App() {
   const [user, setUser] = useState<Customer | null>(null);
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+      <LoginButton /> 
       <p>Hello World!</p>
       {user && <p>{user.surname}</p>}
     </>
