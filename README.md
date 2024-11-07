@@ -60,6 +60,14 @@ Page work:
 | 0/5        | All experiences mobile friendly                       |
 | 0/5        | 3 instances where elements reorder on smaller screens |
 
+
+A self evaluation of the rubric (below the projected rubric evaluation)
+Check boxes filled in to show which features were completed
+
+- [x] Use of Local Storage  
+- [x] Network Calls
+- [x] CI/CD Pipeline
+
 # Check in 2 (Nov 9)
 Goals:
 - [ ] 2 more network calls
