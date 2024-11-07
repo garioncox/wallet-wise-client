@@ -7,7 +7,7 @@ import { AuthProvider } from "react-oidc-context";
 const oidcConfig = {
   authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
   client_id: "garion-final",
-  redirect_uri: "http://localhost:5173",
+  redirect_uri: "http://garion-final.duckdns.org:5173",
   automaticSilentRenew: true,
 };
 
