@@ -1,26 +1,58 @@
-import { useEffect, useState } from "react";
-import { Customer } from "./Data/Customer";
-import axios from "axios";
 import LoginButton from "./Components/Auth/LoginButton";
+import { Budget } from "./Data/Budget";
+import { TransactionEvent } from "./Data/TransactionEvent";
+import { useAllBudgets } from "./Functions/TanStack/BudgetQueries";
+import { useAllCustomers } from "./Functions/TanStack/CustomerQueries";
+import { useAllTransactionEvents } from "./Functions/TanStack/TransactionQueries";
 
 function App() {
-  const [user, setUser] = useState<Customer | null>(null);
+  const {
+    data: customers,
+    isError: isCustomersError,
+    isPending: isCustomersPending,
+  } = useAllCustomers();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      console.log("fetching user...");
-      const response = await axios.get(`/api/Customer/getAll`);
-      setUser(response.data[0]);
-    };
-    fetchUser();
-  }, []);
+  const {
+    data: budgets,
+    isError: isBudgetsError,
+    isPending: isBudgetsPending,
+  } = useAllBudgets();
+
+  const {
+    data: transactions,
+    isError: isTransactionsError,
+    isPending: isTransactionsPending,
+  } = useAllTransactionEvents();
+
+  if (isCustomersPending || isBudgetsPending || isTransactionsPending) {
+    <div>Loading...</div>;
+  }
+
+  if (isCustomersError || isBudgetsError || isTransactionsError) {
+    return <div>Sorry, something went wrong.</div>;
+  }
 
   return (
-    <>
-      <LoginButton /> 
+    <div>
+      <LoginButton />
       <p>Hello World!</p>
-      {user && <p>{user.surname}</p>}
-    </>
+
+      {customers && customers[0] && <p>{customers[0].surname}</p>}
+
+      <hr />
+      <p>Budgets:</p>
+      {budgets &&
+        budgets.map((b: Budget) => {
+          return <p key={b.id}>{b.budgetName}</p>;
+        })}
+
+      <hr />
+      <p>Transactions:</p>
+      {transactions &&
+        transactions.map((t: TransactionEvent) => {
+          return <p key={t.id}>{t.transactionName}</p>;
+        })}
+    </div>
   );
 }
 

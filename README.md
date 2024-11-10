@@ -100,6 +100,10 @@ Page work:
 | 0/5        | All experiences mobile friendly                       |
 | 0/5        | 3 instances where elements reorder on smaller screens |
 
+- [x] 2 more network calls
+- [x] CI / CD Complete
+- [x] Authentication
+
 # Check in 3 (Nov 13)
 Goals:
 - [ ] 1 tanstack storage
