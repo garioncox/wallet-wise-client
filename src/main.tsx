@@ -9,7 +9,7 @@ import { queryClient } from "./Functions/TanStack/QueryClient.ts";
 const oidcConfig = {
   authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
   client_id: "garion-final",
-  redirect_uri: "http://garion-final.duckdns.org:5173",
+  redirect_uri: "https://garion-final.duckdns.org:5173",
   automaticSilentRenew: true,
 };
 
