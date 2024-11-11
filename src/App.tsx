@@ -33,7 +33,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="bg-christi-500 p-4">
       <LoginButton />
       <p>Hello World!</p>
 

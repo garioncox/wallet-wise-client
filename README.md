@@ -31,14 +31,14 @@ The site will have these pages:
 # Check in 1 (Nov 6)
 Goals:
 - [ ] Tailwind config / standardization
-- [ ] Create Local db
-- [ ] Seed db with fake data
-- [ ] One API Call
-- [ ] CI / CD pipeline - testing + linting + deploy to k8s
+- [x] Create Local db
+- [x] Seed db with fake data
+- [x] One API Call
+- [x] CI / CD pipeline - testing + linting + deploy to k8s
 
 Page work:
-- [ ] **[Figma]** Landing page
-- [ ] **[Figma]** Dashboard page
+- [x] **[Figma]** Landing page
+- [x] **[Figma]** Dashboard page
 
 | Score      | Technology                                        |
 |------------|---------------------------------------------------|
@@ -70,9 +70,9 @@ Check boxes filled in to show which features were completed
 
 # Check in 2 (Nov 9)
 Goals:
-- [ ] 2 more network calls
-- [ ] CI / CD Complete
-- [ ] Authentication
+- [x] 2 more network calls
+- [x] CI / CD Complete
+- [x] Authentication
 
 Page work:
 - [ ] Landing Page
