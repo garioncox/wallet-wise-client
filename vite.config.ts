@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5046',
+        target: 'http://garion-final.duckdns.org/',
         changeOrigin: true,
       },
     }
