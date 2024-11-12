@@ -4,6 +4,7 @@ import { TransactionEvent } from "./Data/TransactionEvent";
 import { useAllBudgets } from "./Functions/TanStack/BudgetQueries";
 import { useAllCustomers } from "./Functions/TanStack/CustomerQueries";
 import { useAllTransactionEvents } from "./Functions/TanStack/TransactionQueries";
+import { Landing } from "./Pages/Landing";
 
 function App() {
   const {
@@ -34,7 +35,8 @@ function App() {
 
   return (
     <MainLayout>
-      <div className="bg-christi-500 p-4">
+      <Landing />
+      {/* <div className="bg-christi-500 p-4">
         <p>Hello World!</p>
 
         {customers && customers[0] && <p>{customers[0].surname}</p>}
@@ -52,7 +54,7 @@ function App() {
           transactions.map((t: TransactionEvent) => {
             return <p key={t.id}>{t.transactionName}</p>;
           })}
-      </div>
+      </div> */}
     </MainLayout>
   );
 }

@@ -1,11 +1,15 @@
 import React from "react";
 import { Navbar } from "./Navbar";
+import { Toaster } from "react-hot-toast";
 
 export const MainLayout = (props: { children: React.ReactNode }) => {
   return (
-    <div className="bg-stone-50 h-screen">
+    <div className="h-screen flex flex-col">
       <Navbar />
-      <div className="p-5">{props.children}</div>;
+      <div className="flex p-5 h-full w-full bg-stone-100 justify-center items-center">
+        {props.children}
+      </div>
+      <Toaster position="bottom-right" reverseOrder={false} />
     </div>
   );
 };

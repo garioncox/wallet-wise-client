@@ -75,7 +75,7 @@ Goals:
 - [x] Authentication
 
 Page work:
-- [ ] Landing Page
+- [x] Landing Page
 - [ ] Dashboard Page
 - [ ] **[Figma]** Transaction Input
 - [ ] **[Figma]** Transaction History / Management
@@ -106,10 +106,10 @@ Page work:
 
 # Check in 3 (Nov 13)
 Goals:
-- [ ] 1 tanstack storage
+- [x] 1 tanstack storage
 - [ ] Toasts integrated and shown
-- [ ] Authentication complete
-- [ ] 1 more network call
+- [x] Authentication complete
+- [x] 1 more network call
 
 Page work:
 - [ ] Transaction Input
