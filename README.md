@@ -107,7 +107,7 @@ Page work:
 # Check in 3 (Nov 13)
 Goals:
 - [x] 1 tanstack storage
-- [ ] Toasts integrated and shown
+- [x] Toasts integrated and shown
 - [x] Authentication complete
 - [x] 1 more network call
 
