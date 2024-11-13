@@ -13,5 +13,3 @@ export const MainLayout = (props: { children: React.ReactNode }) => {
     </div>
   );
 };
-
-// https://www.freepik.com/free-vector/checklist-budget-plan-clipboard-landing-page-template_21523796.htm

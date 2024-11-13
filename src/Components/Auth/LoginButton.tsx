@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { useAuth } from "react-oidc-context";
 
 function LoginButton() {
@@ -15,20 +16,61 @@ function LoginButton() {
   }
 
   if (auth.error) {
-    return <div>Oops... {auth.error.message}</div>;
+    toast.error(auth.error.message);
+    return <div>Oops...</div>;
   }
+
+  return (
+    <div className="flex flex-row grow items-center font-semibold text-christi-200">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        className="size-12 ms-auto me-5 hover:text-christi-400"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+        />
+      </svg>
+
+      {auth.isAuthenticated ? (
+        <button
+          className="flex grow hover:text-christi-400"
+          onClick={() => void auth.removeUser()}
+        >
+          Log out
+        </button>
+      ) : (
+        <button
+          className="hover:text-christi-400"
+          onClick={() => void auth.signinRedirect()}
+        >
+          Log in
+        </button>
+      )}
+    </div>
+  );
 
   if (auth.isAuthenticated) {
     return (
       <div>
-        <button onClick={() => void auth.removeUser()}>Log out</button>
+        <button
+          className="text-christi-200 font-semibold flex grow ms-auto hover:text-christi-400"
+          onClick={() => void auth.removeUser()}
+        >
+          Log out
+        </button>
       </div>
     );
   }
 
   return (
     <button
-      className="flex grow ms-auto"
+      className="text-christi-200 font-semibold flex grow ms-auto hover:text-christi-400"
       onClick={() => void auth.signinRedirect()}
     >
       Log in
