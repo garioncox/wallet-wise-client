@@ -32,5 +32,4 @@ export const Landing = () => {
       </div>
     </>
   );
-  // https://pngtree.com/freepng/financial-planning-securities-illustration-3_8886830.html
 };
