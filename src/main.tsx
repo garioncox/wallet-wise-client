@@ -5,6 +5,10 @@ import App from "./App.tsx";
 import { AuthProvider, AuthProviderProps } from "react-oidc-context";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./Functions/TanStack/QueryClient.ts";
+import { MainLayout } from "./Components/Layout/MainLayout.tsx";
+import { ErrorBoundary } from "react-error-boundary";
+import { Error } from "./Pages/Error.tsx";
+import { BrowserRouter } from "react-router-dom";
 
 const oidcConfig: AuthProviderProps = {
   authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
@@ -18,11 +22,17 @@ const oidcConfig: AuthProviderProps = {
 };
 
 createRoot(document.getElementById("root")!).render(
-  <AuthProvider {...oidcConfig}>
-    <StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </StrictMode>
-  </AuthProvider>
+  <BrowserRouter>
+    <AuthProvider {...oidcConfig}>
+      <StrictMode>
+        <QueryClientProvider client={queryClient}>
+          <MainLayout>
+            <ErrorBoundary fallback={<Error />}>
+              <App />
+            </ErrorBoundary>
+          </MainLayout>
+        </QueryClientProvider>
+      </StrictMode>
+    </AuthProvider>
+  </BrowserRouter>
 );

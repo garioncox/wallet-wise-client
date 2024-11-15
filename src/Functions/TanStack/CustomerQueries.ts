@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllCustomers } from "../Axios/CustomerHttp";
+import { getAllCustomers, getCustomerByEmail } from "../Axios/CustomerHttp";
 import toast from "react-hot-toast";
 
 export const useAllCustomers = () => {
@@ -15,5 +15,12 @@ export const useAllCustomers = () => {
 
       return customers;
     },
+  });
+};
+
+export const useCustomerByEmail = (email: string) => {
+  return useQuery({
+    queryKey: ["budgets"],
+    queryFn: () => getCustomerByEmail(email),
   });
 };

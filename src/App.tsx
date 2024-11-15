@@ -1,6 +1,7 @@
-import { MainLayout } from "./Components/Layout/MainLayout";
+import { Route, Routes } from "react-router-dom";
 import { useAllCustomers } from "./Functions/TanStack/CustomerQueries";
 import { Landing } from "./Pages/Landing";
+import { TransactionInput } from "./Pages/TransactionInput";
 
 function App() {
   const { isError: isCustomersError, isPending: isCustomersPending } =
@@ -15,9 +16,10 @@ function App() {
   }
 
   return (
-    <MainLayout>
-      <Landing />
-    </MainLayout>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/transaction/input" element={<TransactionInput />} />
+    </Routes>
   );
 }
 
