@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Landing = () => {
   return (
     <>
@@ -14,9 +16,12 @@ export const Landing = () => {
             better financial future with confidence!
           </p>
           <div className="ps-2 flex w-5/6">
-            <button className="bg-christi-500 p-4 px-10 rounded-lg text-xl text-stone-100 font-bold hover:bg-christi-600">
-              Learn More
-            </button>
+            <Link
+              to={"/transaction/input"}
+              className="bg-christi-500 p-4 px-10 rounded-lg text-xl text-stone-100 font-bold hover:bg-christi-600"
+            >
+              Start Entering
+            </Link>
             <button className="text-christi-500 rounded-xl text-2xl font-bold mx-10 ms-32 hover:text-christi-600">
               Show all
             </button>
