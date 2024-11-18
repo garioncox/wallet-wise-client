@@ -87,7 +87,7 @@ export const TransactionInput = () => {
       {budgets.map((b) => (
         <div
           key={b.id}
-          className="hover:bg-stone-300 cursor-pointer border rounded-full border-stone-500 flex flex-row align-middle justify-center"
+          className="items-center hover:bg-stone-300 cursor-pointer border rounded-full border-stone-500 flex flex-row align-middle justify-center"
           onClick={() =>
             setBudgets([...budgets.filter((budget) => budget.id != b.id)])
           }
