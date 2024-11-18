@@ -1,27 +1,14 @@
-import { useState } from "react";
-import { useGTextInput } from "../Components/Generics/Controls/gTextInputControl";
 import GTextInput from "../Components/Generics/gTextInput";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Budget } from "../Data/Budget";
 import { useAllBudgets } from "../Functions/TanStack/BudgetQueries";
+import { useTransactionInput } from "./TransactionInputControl";
 
 export const TransactionInput = () => {
-  const nameControl = useGTextInput("", (s: string) =>
-    s === "" ? "Field is required" : ""
-  );
-
-  const dateControl = useGTextInput("", (s: string) =>
-    s === "" ? "Field is required" : ""
-  );
-
-  const amountControl = useGTextInput("", (s: string) =>
-    s === "" ? "Field is required" : ""
-  );
-
-  const [budgets, setBudgets] = useState<Budget[]>([]);
-
   const { data: allBudgets, isLoading: isBudgetsLoading } = useAllBudgets();
+
+  const control = useTransactionInput();
 
   if (isBudgetsLoading) {
     return <div>Loading...</div>;
@@ -29,16 +16,14 @@ export const TransactionInput = () => {
 
   return (
     <div className="flex flex-col rounded-xl p-20 bg-stone-200 shadow shadow-stone-500">
-      <GTextInput label="Name" control={nameControl} />
-      <div className="my-5">
-        <GTextInput label="Date" control={dateControl} />
-      </div>
-      <GTextInput label="Amount" control={amountControl} />
+      <GTextInput label="Name" control={control.nameControl} />
+      <GTextInput label="Date" control={control.dateControl} />
+      <GTextInput label="Amount" control={control.amountControl} />
 
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            Options
+            Budget Types
             <ChevronDownIcon
               aria-hidden="true"
               className="-mr-1 size-5 text-gray-400"
@@ -52,14 +37,11 @@ export const TransactionInput = () => {
         >
           <div className="py-1">
             {allBudgets.map((b: Budget) =>
-              budgets.includes(b) ? (
-                <div>
+              control.budgets.includes(b) ? (
+                <div key={b.id}>
                   <MenuItem>
                     <a
                       href="#"
-                      onClick={() => {
-                        setBudgets([...budgets, b]);
-                      }}
                       className="block px-4 py-2 text-sm bg-gray-100 text-gray-400 outline-none cursor-default"
                     >
                       {b.budgetName}
@@ -67,11 +49,11 @@ export const TransactionInput = () => {
                   </MenuItem>
                 </div>
               ) : (
-                <MenuItem>
+                <MenuItem key={b.id}>
                   <a
                     href="#"
                     onClick={() => {
-                      setBudgets([...budgets, b]);
+                      control.setBudgets([...control.budgets, b]);
                     }}
                     className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:text-gray-900 data-[focus]:outline-none"
                   >
@@ -84,18 +66,26 @@ export const TransactionInput = () => {
         </MenuItems>
       </Menu>
 
-      {budgets.map((b) => (
+      {control.budgets.map((b) => (
         <div
           key={b.id}
           className="items-center hover:bg-stone-300 cursor-pointer border rounded-full border-stone-500 flex flex-row align-middle justify-center"
           onClick={() =>
-            setBudgets([...budgets.filter((budget) => budget.id != b.id)])
+            control.setBudgets([
+              ...control.budgets.filter((budget) => budget.id != b.id),
+            ])
           }
         >
           {b.budgetName}
           <XMarkIcon className="h-4 w-auto" />
         </div>
       ))}
+      <button
+        onClick={control.submit}
+        className="bg-christi-500 p-2 mt-5 rounded-lg text-stone-100 font-bold hover:bg-christi-600"
+      >
+        Submit
+      </button>
     </div>
   );
 };
