@@ -1,12 +1,15 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { addTransactionEvent, getAllTransactionEvents } from "../Axios/TransactionHttp";
+import {
+  addTransactionEvent,
+  getAllTransactionEvents,
+} from "../Axios/TransactionHttp";
 import { queryKeys } from "./KeyFactory";
-import { TransactionEvent } from "../../Data/TransactionEvent";
 import { Budget } from "../../Data/Budget";
-import { BudgetTransactionEvent } from "../../Data/BudgetTransactionEvent";
 import { addBudgetTransactionEvent } from "../Axios/BudgetTransactionHttp";
 import { queryClient } from "./QueryClient";
 import toast from "react-hot-toast";
+import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
+import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
 
 export const useAllTransactionEvents = () => {
   return useQuery({
@@ -21,24 +24,23 @@ export const useAddTransactionMutation = () => {
       transaction,
       budgets,
     }: {
-      transaction: TransactionEvent;
+      transaction: TransactionEventDTO;
       budgets: Budget[];
     }) => {
       const eventId = await addTransactionEvent(transaction);
       budgets.forEach(async (b) => {
-        const bte: BudgetTransactionEvent = {
-          id: null,
-          TransactionEventId: eventId,
-          BudgetId: b.id,
+        const bte: BudgetTransactionEventDTO = {
+          transactionEventId: eventId,
+          budgetId: b.id,
         };
         await addBudgetTransactionEvent(bte);
       });
 
-      queryClient.invalidateQueries({queryKey: queryKeys.transactions})
-      queryClient.invalidateQueries({queryKey: queryKeys.budgetTransactions})
+      queryClient.invalidateQueries({ queryKey: queryKeys.transactions });
+      queryClient.invalidateQueries({ queryKey: queryKeys.budgetTransactions });
 
       toast.success("Successfully added transaction");
     },
-    onError: () => toast.error("Error adding transaction")
+    onError: () => toast.error("Error adding transaction"),
   });
 };

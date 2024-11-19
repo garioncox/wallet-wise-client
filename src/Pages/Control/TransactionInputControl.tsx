@@ -2,9 +2,11 @@ import { useState } from "react";
 import {
   GTextInputController,
   useGTextInput,
-} from "../Components/Generics/Controls/gTextInputControl";
-import { Budget } from "../Data/Budget";
+} from "../../Components/Generics/Controls/gTextInputControl";
+import { Budget } from "../../Data/Budget";
 import toast from "react-hot-toast";
+import { useAddTransactionMutation } from "../../Functions/TanStack/TransactionQueries";
+import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
@@ -23,6 +25,7 @@ export const useTransactionInput = () => {
   const dateControl = useGTextInput("", defaultFieldFunction);
   const amountControl = useGTextInput("", defaultFieldFunction);
   const [budgets, setBudgets] = useState<Budget[]>([]);
+  const addTransactionMutation = useAddTransactionMutation();
 
   const submit = () => {
     if (!validateFields()) {
@@ -30,8 +33,16 @@ export const useTransactionInput = () => {
       return;
     }
 
-    budgets.forEach((b) => {
-      console.log(b);
+    const transaction: TransactionEventDTO = {
+      transactionName: nameControl.value,
+      amt: Number(amountControl.value),
+      transactionDate: new Date().toISOString(),
+      customerId: 1,
+    };
+
+    addTransactionMutation.mutate({
+      transaction: transaction,
+      budgets: budgets,
     });
 
     toast.success("Success!");

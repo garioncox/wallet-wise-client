@@ -1,6 +1,7 @@
 export interface TransactionEvent {
-  id: number;
+  id: number | null;
   transactionName: string;
-  amount: number;
-  date: string;
+  amt: number;
+  transactionDate: string;
+  customerId: number;
 }

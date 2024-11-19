@@ -1,6 +1,8 @@
-import axios from "axios"
-import { BudgetTransactionEvent } from "../../Data/BudgetTransactionEvent"
+import axios from "axios";
+import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
 
-export const addBudgetTransactionEvent = async (bte: BudgetTransactionEvent) => {
-    await axios.post(`/api/BudgetTransactionEvent/add`, bte)
-}
+export const addBudgetTransactionEvent = async (
+  bte: BudgetTransactionEventDTO
+) => {
+  await axios.post(`/api/BudgetTransactionEvent/add`, bte);
+};

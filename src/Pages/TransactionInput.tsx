@@ -3,7 +3,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Budget } from "../Data/Budget";
 import { useAllBudgets } from "../Functions/TanStack/BudgetQueries";
-import { useTransactionInput } from "./TransactionInputControl";
+import { useTransactionInput } from "./Control/TransactionInputControl";
 
 export const TransactionInput = () => {
   const { data: allBudgets, isLoading: isBudgetsLoading } = useAllBudgets();
