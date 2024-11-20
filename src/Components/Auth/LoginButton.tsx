@@ -28,7 +28,7 @@ function LoginButton() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="size-12 ms-auto me-5 hover:text-christi-100"
+        className="size-12 me-5 hover:text-christi-100"
       >
         <path
           strokeLinecap="round"
@@ -53,28 +53,6 @@ function LoginButton() {
         </button>
       )}
     </div>
-  );
-
-  if (auth.isAuthenticated) {
-    return (
-      <div>
-        <button
-          className="text-christi-200 font-semibold flex grow ms-auto hover:text-christi-400"
-          onClick={() => void auth.removeUser()}
-        >
-          Log out
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <button
-      className="text-christi-200 font-semibold flex grow ms-auto hover:text-christi-400"
-      onClick={() => void auth.signinRedirect()}
-    >
-      Log in
-    </button>
   );
 }
 
