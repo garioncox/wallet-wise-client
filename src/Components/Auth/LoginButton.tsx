@@ -28,7 +28,7 @@ function LoginButton() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="size-12 ms-auto me-5 hover:text-christi-400"
+        className="size-12 ms-auto me-5 hover:text-christi-100"
       >
         <path
           strokeLinecap="round"
@@ -39,14 +39,14 @@ function LoginButton() {
 
       {auth.isAuthenticated ? (
         <button
-          className="flex grow hover:text-christi-400"
+          className="flex grow hover:text-christi-100"
           onClick={() => void auth.removeUser()}
         >
           Log out
         </button>
       ) : (
         <button
-          className="hover:text-christi-400"
+          className="hover:text-christi-100"
           onClick={() => void auth.signinRedirect()}
         >
           Log in

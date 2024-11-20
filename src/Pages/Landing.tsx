@@ -23,7 +23,7 @@ export const Landing = () => {
               Start Entering
             </Link>
             <button className="text-christi-500 rounded-xl text-2xl font-bold mx-10 ms-32 hover:text-christi-600">
-              Show all
+              See History
             </button>
           </div>
         </div>
