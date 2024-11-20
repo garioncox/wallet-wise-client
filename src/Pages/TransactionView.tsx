@@ -1,3 +1,4 @@
+import { Spinner } from "../Components/Layout/Spinnex";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useAllTransactionEvents } from "../Functions/TanStack/TransactionQueries";
 
@@ -5,7 +6,7 @@ export const TransactionView = () => {
   const { data: allTransactions, isLoading } = useAllTransactionEvents();
 
   if (isLoading) {
-    return <>Loading...</>;
+    return <Spinner />;
   }
 
   if (allTransactions.length == 0) {
