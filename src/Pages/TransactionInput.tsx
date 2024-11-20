@@ -4,6 +4,8 @@ import { ChevronDownIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { Budget } from "../Data/Budget";
 import { useAllBudgets } from "../Functions/TanStack/BudgetQueries";
 import { useTransactionInput } from "./Control/TransactionInputControl";
+import { Spinner } from "../Components/Layout/Spinnex";
+import GNumberInput from "../Components/Generics/gNumberInput";
 
 export const TransactionInput = () => {
   const { data: allBudgets, isLoading: isBudgetsLoading } = useAllBudgets();
@@ -11,14 +13,19 @@ export const TransactionInput = () => {
   const control = useTransactionInput();
 
   if (isBudgetsLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return (
     <div className="flex flex-col rounded-xl p-20 bg-stone-200 shadow shadow-stone-500">
       <GTextInput label="Name" control={control.nameControl} />
       <GTextInput label="Date" control={control.dateControl} />
-      <GTextInput label="Amount" control={control.amountControl} />
+      <GNumberInput
+        label="Amount"
+        control={control.amountControl}
+        minimum={1}
+        maximum={1000000}
+      />
 
       <Menu as="div" className="relative inline-block text-left">
         <div>
