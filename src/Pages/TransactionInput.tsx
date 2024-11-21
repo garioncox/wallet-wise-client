@@ -30,17 +30,18 @@ export const TransactionInput = () => {
           <GTextInput label="Name" control={control.nameControl} />
         </div>
 
-        <div className="flex flex-row space-x-5 items-center">
+        <div className="flex grow flex-row space-x-5 items-center">
           <GDateInput label="Date" control={control.dateControl} />
           <GSelectInput
             control={control.selectControl}
             label={"Budget Types"}
           />
-
+        </div>
+        <div className="flex grow pt-3">
           {control.selectControl.selectedValues.map((s: string) => (
             <div
               key={s}
-              className="items-center hover:bg-stone-300 cursor-pointer border rounded-full border-stone-500 flex flex-row align-middle justify-center"
+              className="px-3 mx-1 bg-stone-50 items-center hover:bg-stone-200 cursor-pointer border rounded-full border-stone-500 flex flex-row flex-wrap align-middle justify-center"
               onClick={() =>
                 control.selectControl.setSelectedValues([
                   ...control.selectControl.selectedValues.filter(
@@ -53,13 +54,13 @@ export const TransactionInput = () => {
               <XMarkIcon className="h-4 w-auto" />
             </div>
           ))}
-          <button
-            onClick={control.submit}
-            className="bg-christi-500 p-2 mt-5 rounded-lg text-stone-100 font-bold hover:bg-christi-600"
-          >
-            Submit
-          </button>
         </div>
+        <button
+          onClick={control.submit}
+          className="bg-christi-500 p-2 mt-5 rounded-lg text-stone-100 font-bold hover:bg-christi-600"
+        >
+          Submit
+        </button>
       </div>
     </Cardify>
   );
