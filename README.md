@@ -184,8 +184,8 @@ Page work:
 Goals:
 
 - [x] Finish error boundary / handling
-- [ ] 2 more reusable inputs
-- [ ] Page authorization
+- [x] 2 more reusable inputs
+- [x] Page authorization
 
 Page work:
 

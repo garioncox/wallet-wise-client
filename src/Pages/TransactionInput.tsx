@@ -6,6 +6,7 @@ import { useAllBudgets } from "../Functions/TanStack/BudgetQueries";
 import { useTransactionInput } from "./Control/TransactionInputControl";
 import { Spinner } from "../Components/Layout/Spinnex";
 import GNumberInput from "../Components/Generics/gNumberInput";
+import GDateInput from "../Components/Generics/gDateInput";
 
 export const TransactionInput = () => {
   const { data: allBudgets, isLoading: isBudgetsLoading } = useAllBudgets();
@@ -19,7 +20,7 @@ export const TransactionInput = () => {
   return (
     <div className="flex flex-col rounded-xl p-20 bg-stone-200 shadow shadow-stone-500">
       <GTextInput label="Name" control={control.nameControl} />
-      <GTextInput label="Date" control={control.dateControl} />
+      <GDateInput label="Date" control={control.dateControl} />
       <GNumberInput
         label="Amount"
         control={control.amountControl}

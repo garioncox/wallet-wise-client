@@ -11,10 +11,14 @@ import {
   GMoneyInputControl,
   useGMoneyInput,
 } from "../../Components/Generics/Controls/gMoneyInputControl";
+import {
+  GDateInputController,
+  useGDateInput,
+} from "../../Components/Generics/Controls/gDateInputControl";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
-  dateControl: GTextInputController;
+  dateControl: GDateInputController;
   amountControl: GMoneyInputControl;
   budgets: Budget[];
   setBudgets: (b: Budget[]) => void;
@@ -26,7 +30,7 @@ export const useTransactionInput = () => {
     s === "" ? "Field is required" : "";
 
   const nameControl = useGTextInput("", defaultFieldFunction);
-  const dateControl = useGTextInput("", defaultFieldFunction);
+  const dateControl = useGDateInput("", defaultFieldFunction);
   const amountControl = useGMoneyInput(1, (n: number) =>
     n <= 0 ? "Amount must be greater than zero" : ""
   );
