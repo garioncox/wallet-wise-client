@@ -1,8 +1,8 @@
-import { GNumberInputController } from "./Controls/gNumberInputControl";
+import { GMoneyInputControl } from "./Controls/gMoneyInputControl";
 
-const GNumberInput: React.FC<{
+const GMoneyInput: React.FC<{
   label?: string;
-  control: GNumberInputController;
+  control: GMoneyInputControl;
   minimum?: number;
   maximum?: number;
 }> = ({ label, control, minimum, maximum }) => {
@@ -33,4 +33,4 @@ const GNumberInput: React.FC<{
   );
 };
 
-export default GNumberInput;
+export default GMoneyInput;
