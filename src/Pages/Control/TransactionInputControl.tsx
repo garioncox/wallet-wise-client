@@ -43,10 +43,12 @@ export const useTransactionInput = () => {
       return;
     }
 
+    const date = new Date(dateControl.value);
+
     const transaction: TransactionEventDTO = {
       transactionName: nameControl.value,
       amt: Number(amountControl.value),
-      transactionDate: new Date().toISOString(),
+      transactionDate: date.toISOString().split("T")[0],
       customerId: 1,
     };
 
@@ -54,8 +56,6 @@ export const useTransactionInput = () => {
       transaction: transaction,
       budgets: budgets,
     });
-
-    toast.success("Success!");
   };
 
   const validateFields = () => {
