@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { getAllBudgets, getAllBudgetsAuth, getBudgetByCustomerId } from "../Axios/BudgetHttp";
+import {
+  getAllBudgets,
+  getAllBudgetsAuth,
+  getBudgetByCustomerId,
+} from "../Axios/BudgetHttp";
 import { useAuth } from "react-oidc-context";
 
 export const useAllBudgets = () => {

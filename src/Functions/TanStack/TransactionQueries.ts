@@ -11,7 +11,7 @@ import { queryClient } from "./QueryClient";
 import toast from "react-hot-toast";
 import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
-import { useAuth } from "react-oidc-context";
+import { useCurrentCustomer } from "./CustomerQueries";
 
 export const useAllTransactionEvents = () => {
   return useQuery({
@@ -20,16 +20,15 @@ export const useAllTransactionEvents = () => {
   });
 };
 
-export const useAllTransactionEventsForCurrentUser = () => {
-  const { user, isLoading } = useAuth();
+export const useAllTransactionEventsForCurrentCustomer = () => {
+  const { data: user, isLoading } = useCurrentCustomer();
 
   return useQuery({
     queryKey: queryKeys.transactions,
     queryFn: () => {
-      console.log(user?.profile.email);
-      return getAllTransactionEventsByEmail(user!.profile.email!);
+      return getAllTransactionEventsByEmail(user!.email);
     },
-    enabled: !!(user && isLoading),
+    enabled: !!(user && !isLoading),
   });
 };
 
