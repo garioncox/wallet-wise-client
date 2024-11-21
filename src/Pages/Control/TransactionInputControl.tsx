@@ -8,14 +8,14 @@ import toast from "react-hot-toast";
 import { useAddTransactionMutation } from "../../Functions/TanStack/TransactionQueries";
 import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import {
-  GNumberInputController,
-  useGNumberInput,
-} from "../../Components/Generics/Controls/gNumberInputControl";
+  GMoneyInputControl,
+  useGMoneyInput,
+} from "../../Components/Generics/Controls/gMoneyInputControl";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
   dateControl: GTextInputController;
-  amountControl: GNumberInputController;
+  amountControl: GMoneyInputControl;
   budgets: Budget[];
   setBudgets: (b: Budget[]) => void;
   submit: () => void;
@@ -27,7 +27,7 @@ export const useTransactionInput = () => {
 
   const nameControl = useGTextInput("", defaultFieldFunction);
   const dateControl = useGTextInput("", defaultFieldFunction);
-  const amountControl = useGNumberInput(1, (n: number) =>
+  const amountControl = useGMoneyInput(1, (n: number) =>
     n <= 0 ? "Amount must be greater than zero" : ""
   );
   const [budgets, setBudgets] = useState<Budget[]>([]);

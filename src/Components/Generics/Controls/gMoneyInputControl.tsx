@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export interface GNumberInputController {
+export interface GMoneyInputControl {
   value: number;
   setValue: (v: number) => void;
   hasBeenTouched: boolean;
@@ -8,7 +8,7 @@ export interface GNumberInputController {
   error: string;
 }
 
-export const useGNumberInput = (
+export const useGMoneyInput = (
   startValue: number = 0,
   getErrorMessage: (value: number) => string
 ) => {
