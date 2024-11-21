@@ -6,6 +6,7 @@ import { Test } from "./Pages/Test";
 import { useEffect } from "react";
 import { useAuth } from "react-oidc-context";
 import { callAuthApiEndpoint } from "./Functions/apiService";
+import { RequireAuth } from "./Components/Auth/RequireAuth";
 
 function App() {
   const { user, isAuthenticated } = useAuth();
@@ -23,9 +24,30 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Landing />} />
-      <Route path="/transaction/input" element={<TransactionInput />} />
-      <Route path="/transaction/view" element={<TransactionView />} />
-      <Route path="/test" element={<Test />} />
+      <Route
+        path="/transaction/input"
+        element={
+          <RequireAuth>
+            <TransactionInput />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/transaction/view"
+        element={
+          <RequireAuth>
+            <TransactionView />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/test"
+        element={
+          <RequireAuth>
+            <Test />
+          </RequireAuth>
+        }
+      />
     </Routes>
   );
 }

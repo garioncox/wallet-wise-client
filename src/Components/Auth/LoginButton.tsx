@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { useAuth } from "react-oidc-context";
 
 function LoginButton() {
@@ -16,7 +15,7 @@ function LoginButton() {
   }
 
   if (auth.error) {
-    toast.error(auth.error.message);
+    console.error(auth.error.message);
     return <div>Oops...</div>;
   }
 
