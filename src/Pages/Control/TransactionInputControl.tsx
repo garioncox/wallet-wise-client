@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   GTextInputController,
   useGTextInput,
@@ -15,6 +14,8 @@ import {
   GDateInputController,
   useGDateInput,
 } from "../../Components/Generics/Controls/gDateInputControl";
+import { useAllBudgets } from "../../Functions/TanStack/BudgetQueries";
+import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
@@ -26,6 +27,8 @@ export interface TransactionInputController {
 }
 
 export const useTransactionInput = () => {
+  const { data: allBudgets } = useAllBudgets();
+
   const defaultFieldFunction = (s: string) =>
     s === "" ? "Field is required" : "";
 
@@ -34,7 +37,10 @@ export const useTransactionInput = () => {
   const amountControl = useGMoneyInput(1, (n: number) =>
     n <= 0 ? "Amount must be greater than zero" : ""
   );
-  const [budgets, setBudgets] = useState<Budget[]>([]);
+  const selectControl = useGSelectInput(
+    allBudgets ? allBudgets.map((b: Budget) => b.budgetName) : [],
+    () => ""
+  );
   const addTransactionMutation = useAddTransactionMutation();
 
   const submit = () => {
@@ -54,7 +60,9 @@ export const useTransactionInput = () => {
 
     addTransactionMutation.mutate({
       transaction: transaction,
-      budgets: budgets,
+      budgets: allBudgets.filter((b: Budget) =>
+        selectControl.selectedValues.includes(b.budgetName)
+      ),
     });
   };
 
@@ -67,7 +75,7 @@ export const useTransactionInput = () => {
       nameControl.error ||
       dateControl.error ||
       amountControl.error ||
-      budgets.length == 0
+      selectControl.selectedValues.length == 0
     );
   };
 
@@ -75,8 +83,7 @@ export const useTransactionInput = () => {
     nameControl,
     dateControl,
     amountControl,
-    budgets,
-    setBudgets,
+    selectControl,
     submit,
   };
 };
