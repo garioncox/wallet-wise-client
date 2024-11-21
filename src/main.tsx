@@ -17,8 +17,7 @@ const oidcConfig: AuthProviderProps = {
     process.env.NODE_ENV === "production"
       ? "https://garion-final.duckdns.org/"
       : "http://localhost:5173",
-  onSigninCallback: (user) => {
-    console.log(user);
+  onSigninCallback: () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
   automaticSilentRenew: true,

@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     const call = async () => {
-      console.log(`calling with... ${user?.id_token ?? ""}`);
+      // console.log(`calling with... ${user?.id_token ?? ""}`);
       await callAuthApiEndpoint(user?.id_token ?? "");
     };
     if (isAuthenticated) {

@@ -1,26 +1,36 @@
-import { useQuery } from "@tanstack/react-query";
-import { getAllCustomers, getCustomerByEmail } from "../Axios/CustomerHttp";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  addCustomer,
+  getAllCustomers,
+  getCustomerByEmail,
+} from "../Axios/CustomerHttp";
 import toast from "react-hot-toast";
+import { queryClient } from "./QueryClient";
+import { queryKeys } from "./KeyFactory";
+import { CustomerDTO } from "../../Data/DTO/CustomerDTO";
 
 export const useAllCustomers = () => {
   return useQuery({
     queryKey: ["customers"],
-    queryFn: async () => {
-      const toastId = toast.loading("Getting customer data...");
-      const customers = await getAllCustomers();
-      setTimeout(() => {
-        toast.dismiss(toastId);
-        toast.success("Success!");
-      }, 500);
-
-      return customers;
-    },
+    queryFn: getAllCustomers,
   });
 };
 
 export const useCustomerByEmail = (email: string) => {
   return useQuery({
     queryKey: ["budgets"],
-    queryFn: () => getCustomerByEmail(email),
+    queryFn: async () => await getCustomerByEmail(email),
+  });
+};
+
+export const useAddCustomerMutation = () => {
+  return useMutation({
+    mutationFn: (customer: CustomerDTO) => addCustomer(customer),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.customers });
+    },
+    onError: () => {
+      toast.error("Error adding customer to database");
+    },
   });
 };

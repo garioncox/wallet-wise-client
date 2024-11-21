@@ -2,17 +2,17 @@ import { Cardify } from "../Components/Layout/Cardify";
 import { Spinner } from "../Components/Layout/Spinnex";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useDateUtils } from "../Functions/DateUtils";
-import { useAllTransactionEvents } from "../Functions/TanStack/TransactionQueries";
+import { useAllTransactionEventsForCurrentUser } from "../Functions/TanStack/TransactionQueries";
 
 export const TransactionView = () => {
-  const { data: allTransactions, isLoading } = useAllTransactionEvents();
+  const { data, isLoading } = useAllTransactionEventsForCurrentUser();
   const dateUtils = useDateUtils();
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  if (allTransactions.length == 0) {
+  if (!data || data.length == 0) {
     return <>No Transactions</>;
   }
 
@@ -22,7 +22,7 @@ export const TransactionView = () => {
         <p className="mb-3 text-center font-bold text-xl">
           Transactions for "Name"
         </p>
-        {allTransactions.map((t: TransactionEvent) => {
+        {data.map((t: TransactionEvent) => {
           return (
             <div className="grid grid-cols-8" key={t.id}>
               <p className="p-3 col-span-2">${t.amt}</p>
