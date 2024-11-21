@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Cardify } from "../Components/Layout/Cardify";
 import { Spinner } from "../Components/Layout/Spinnex";
 import { TransactionEvent } from "../Data/TransactionEvent";
@@ -13,7 +14,24 @@ export const TransactionView = () => {
   }
 
   if (!data || data.length == 0) {
-    return <>No Transactions</>;
+    return (
+      <Cardify>
+        <p className="text-3xl text-center text-slate-600 pb-20">
+          Looks like you don't have any transaction history...
+        </p>
+        <div className="flex content-center align-middle justify-center grow text-center">
+          <p className="text-xl lg:text-2xl flex self-center">
+            Log some entries!
+          </p>
+          <Link
+            to={"/transaction/input"}
+            className="bg-christi-500 hover:bg-christi-600 text-stone-100 rounded-lg text-center text-md lg:text-xl lg:font-bold font-bold mx-5 p-3 lg:ms-20 lg:p-4 lg:px-10"
+          >
+            Show me
+          </Link>
+        </div>
+      </Cardify>
+    );
   }
 
   return (
