@@ -30,20 +30,15 @@ export const useCurrentCustomer = () => {
   return useQuery({
     queryKey: queryKeys.currentUser,
     queryFn: async () => {
-      console.log("Getting user from API...");
       try {
-        const response = await getCustomerByEmail(user!.profile.email!);
-        return response;
+        return await getCustomerByEmail(user!.profile.email!);
       } catch {
         const dto: CustomerDTO = {
           name: user?.profile.name ?? "",
           email: user!.profile!.email!,
         };
 
-        const newCustomer = await addCustomer(dto);
-        console.log(newCustomer);
-
-        return newCustomer;
+        return await addCustomer(dto);
       }
     },
     enabled: !!(user && !isLoading),
