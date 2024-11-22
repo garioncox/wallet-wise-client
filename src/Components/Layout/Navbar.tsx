@@ -53,15 +53,21 @@ export const Navbar = () => {
         </Link>
         <Link
           to={"/transaction/input"}
-          className="flex flex-row text-2xl px-5 items-center font-semibold hover:text-christi-100"
+          className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
         >
           Log Entry
         </Link>
         <Link
           to={"/transaction/view"}
-          className="flex flex-row text-2xl items-center font-semibold hover:text-christi-100"
+          className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
         >
           View History
+        </Link>
+        <Link
+          to={"/budget/input"}
+          className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
+        >
+          Budget Input
         </Link>
         <div className="flex ms-auto me-5">
           <LoginButton />

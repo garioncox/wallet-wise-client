@@ -14,8 +14,9 @@ import {
   GDateInputController,
   useGDateInput,
 } from "../../Components/Generics/Controls/gDateInputControl";
-import { useAllBudgets } from "../../Functions/TanStack/BudgetQueries";
+import { useAllBudgetForCurrentCustomer } from "../../Functions/TanStack/BudgetQueries";
 import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
+import { useCurrentCustomer } from "../../Functions/TanStack/CustomerQueries";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
@@ -27,7 +28,8 @@ export interface TransactionInputController {
 }
 
 export const useTransactionInput = () => {
-  const { data: allBudgets } = useAllBudgets();
+  const { data: allBudgets } = useAllBudgetForCurrentCustomer();
+  const { data: user } = useCurrentCustomer();
 
   const defaultFieldFunction = (s: string) =>
     s === "" ? "Field is required" : "";
@@ -55,7 +57,7 @@ export const useTransactionInput = () => {
       transactionName: nameControl.value,
       amt: Number(amountControl.value),
       transactionDate: date.toISOString().split("T")[0],
-      customerId: 1,
+      customerId: user.id,
     };
 
     addTransactionMutation.mutate({

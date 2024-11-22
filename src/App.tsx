@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useAuth } from "react-oidc-context";
 import { callAuthApiEndpoint } from "./Functions/apiService";
 import { RequireAuth } from "./Components/Auth/RequireAuth";
+import BudgetInput from "./Pages/BudgetInput";
 
 function App() {
   const { user, isAuthenticated } = useAuth();
@@ -48,6 +49,7 @@ function App() {
           </RequireAuth>
         }
       />
+      <Route path="/budget/input" element={<BudgetInput />} />
     </Routes>
   );
 }
