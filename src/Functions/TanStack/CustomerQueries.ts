@@ -38,7 +38,8 @@ export const useCurrentCustomer = () => {
           email: user!.profile!.email!,
         };
 
-        return await addCustomer(dto);
+        await addCustomer(dto);
+        return await getCustomerByEmail(user!.profile.email!);
       }
     },
     enabled: !!(user && !isLoading),

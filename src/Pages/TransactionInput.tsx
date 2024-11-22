@@ -1,20 +1,24 @@
 import GTextInput from "../Components/Generics/gTextInput";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import { useAllBudgets } from "../Functions/TanStack/BudgetQueries";
 import { useTransactionInput } from "./Control/TransactionInputControl";
 import { Spinner } from "../Components/Layout/Spinnex";
 import GNumberInput from "../Components/Generics/gMoneyInput";
 import GDateInput from "../Components/Generics/gDateInput";
 import { Cardify } from "../Components/Layout/Cardify";
 import GSelectInput from "../Components/Generics/gSelectInput";
+import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
 
 export const TransactionInput = () => {
-  const { isLoading: isBudgetsLoading } = useAllBudgets();
+  const { data: budgets, isLoading } = useAllBudgetForCurrentCustomer();
 
   const control = useTransactionInput();
 
-  if (isBudgetsLoading) {
+  if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!budgets || budgets.length === 0) {
+    <div>Oops! No data!</div>;
   }
 
   return (

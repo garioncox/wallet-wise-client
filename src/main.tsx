@@ -16,7 +16,7 @@ const oidcConfig: AuthProviderProps = {
   redirect_uri:
     process.env.NODE_ENV === "production"
       ? "https://garion-final.duckdns.org/"
-      : "http://localhost:5173",
+      : "http://localhost:5173/",
   onSigninCallback: () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
