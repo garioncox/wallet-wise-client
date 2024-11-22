@@ -12,7 +12,7 @@ import { BrowserRouter } from "react-router-dom";
 
 const oidcConfig: AuthProviderProps = {
   authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
-  client_id: "garion-auth-class",
+  client_id: "garion-final",
   // redirect_uri:
   //   process.env.NODE_ENV === "production"
   //     ? "https://garion-final.duckdns.org"
