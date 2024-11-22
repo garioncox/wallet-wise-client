@@ -4,13 +4,17 @@ import { Spinner } from "../Components/Layout/Spinnex";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useDateUtils } from "../Functions/DateUtils";
 import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
+import { Budget } from "../Data/Budget";
+import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
 
 export const TransactionView = () => {
-  const { data: transactionEvents, isLoading } =
+  const { data: transactionEvents, isLoading: isTransactionsLoading } =
     useAllTransactionEventsForCurrentCustomer();
+  const { data: budgets, isLoading: isBudgetsLoading } =
+    useAllBudgetForCurrentCustomer();
   const dateUtils = useDateUtils();
 
-  if (isLoading) {
+  if (isTransactionsLoading || isBudgetsLoading) {
     return <Spinner />;
   }
 
@@ -43,13 +47,19 @@ export const TransactionView = () => {
         </p>
         {transactionEvents.map((t: TransactionEvent) => {
           return (
-            <div className="grid grid-cols-8" key={t.id}>
-              <p className="p-3 col-span-2">${t.amt}</p>
-              <p className="p-3 col-span-4">{t.transactionName}</p>
-              <p className="p-3 col-span-2">
+            <div className="flex flex-row" key={t.id}>
+              <p className="p-3">${t.amt}</p>
+              <p className="p-3">{t.transactionName}</p>
+              <p className="p-3">
                 {dateUtils.convertToStandardString(new Date(t.transactionDate))}
               </p>
-              <hr />
+              {budgets.map((b: Budget) => {
+                return (
+                  <p className="m-3 px-2 mx-1 bg-stone-50 items-center hover:bg-stone-200 cursor-pointer border rounded-full border-stone-500 flex flex-row flex-wrap align-middle justify-center">
+                    {b.budgetName}
+                  </p>
+                );
+              })}
             </div>
           );
         })}
