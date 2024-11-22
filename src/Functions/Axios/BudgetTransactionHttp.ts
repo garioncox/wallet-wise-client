@@ -7,6 +7,11 @@ export const addBudgetTransactionEvent = async (
   await axios.post(`/api/BudgetTransactionEvent/add`, bte);
 };
 
-export const getAllBudgetTransactionEventsForCustomer = async (customerId: number) => {
-  await axios.get(`/api/BudgetTransactionEvent/getAll/${customerId}`);
+export const getAllBudgetTransactionEventsForCustomer = async (
+  customerId: number
+) => {
+  const response = await axios.get(
+    `/api/BudgetTransactionEvent/get/${customerId}`
+  );
+  return response.data;
 };

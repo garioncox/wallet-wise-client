@@ -14,7 +14,7 @@ import { useCurrentCustomer } from "./CustomerQueries";
 
 export const useAllBudgets = () => {
   return useQuery({
-    queryKey: ["budgets"],
+    queryKey: [queryKeys.budgets],
     queryFn: getAllBudgets,
   });
 };
@@ -23,7 +23,7 @@ export const useAllBudgetsAuth = () => {
   const auth = useAuth();
 
   return useQuery({
-    queryKey: ["budgets"],
+    queryKey: [queryKeys.budgets],
     queryFn: () => getAllBudgetsAuth(auth.user?.id_token ?? ""),
     enabled: !!auth.user!.id_token,
   });
@@ -33,7 +33,7 @@ export const useAllBudgetForCurrentCustomer = () => {
   const { data: customer, isLoading } = useCurrentCustomer();
 
   return useQuery({
-    queryKey: ["budgets"],
+    queryKey: [queryKeys.budgets],
     queryFn: async () => await getBudgetByCustomerId(customer.id),
     enabled: !!(customer && !isLoading),
   });
@@ -41,7 +41,7 @@ export const useAllBudgetForCurrentCustomer = () => {
 
 export const useAllBudgetsForCustomer = (customerId: number) => {
   return useQuery({
-    queryKey: ["budgets"],
+    queryKey: [queryKeys.budgets],
     queryFn: () => getBudgetByCustomerId(customerId),
   });
 };
