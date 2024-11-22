@@ -17,6 +17,7 @@ import {
 import { useAllBudgetForCurrentCustomer } from "../../Functions/TanStack/BudgetQueries";
 import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
 import { useCurrentCustomer } from "../../Functions/TanStack/CustomerQueries";
+import { useEffect } from "react";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
@@ -28,8 +29,9 @@ export interface TransactionInputController {
 }
 
 export const useTransactionInput = () => {
-  const { data: allBudgets } = useAllBudgetForCurrentCustomer();
+  const { data: allBudgets, isLoading } = useAllBudgetForCurrentCustomer();
   const { data: user } = useCurrentCustomer();
+  const addTransactionMutation = useAddTransactionMutation();
 
   const defaultFieldFunction = (s: string) =>
     s === "" ? "Field is required" : "";
@@ -39,11 +41,15 @@ export const useTransactionInput = () => {
   const amountControl = useGMoneyInput(1, (n: number) =>
     n <= 0 ? "Amount must be greater than zero" : ""
   );
-  const selectControl = useGSelectInput(
-    allBudgets ? allBudgets.map((b: Budget) => b.budgetName) : [],
-    () => ""
-  );
-  const addTransactionMutation = useAddTransactionMutation();
+
+  const selectControl = useGSelectInput([], () => "");
+
+  useEffect(() => {
+    if (!isLoading && allBudgets) {
+      const budgetNames = allBudgets.map((b: Budget) => b.budgetName);
+      selectControl.setPossibleValues(budgetNames);
+    }
+  }, [allBudgets, isLoading]);
 
   const submit = () => {
     if (!validateFields()) {

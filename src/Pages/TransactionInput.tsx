@@ -7,6 +7,7 @@ import GDateInput from "../Components/Generics/gDateInput";
 import { Cardify } from "../Components/Layout/Cardify";
 import GSelectInput from "../Components/Generics/gSelectInput";
 import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
+import { Link } from "react-router-dom";
 
 export const TransactionInput = () => {
   const { data: budgets, isLoading } = useAllBudgetForCurrentCustomer();
@@ -18,7 +19,22 @@ export const TransactionInput = () => {
   }
 
   if (!budgets || budgets.length === 0) {
-    <div>Oops! No data!</div>;
+    return (
+      <Cardify>
+        <p className="text-3xl text-center text-slate-600 pb-20">
+          Oops! You don't have any budgets set up yet.
+        </p>
+        <div className="flex items-center justify-center text-center">
+          <div className="h-1/2 w-1/2 lg:inline hidden"></div>
+          <Link
+            to={"/budget/input"}
+            className="bg-christi-500 hover:bg-christi-600 text-stone-100 rounded-lg text-center text-md lg:text-xl lg:font-bold font-bold mx-5 p-3 lg:ms-20 lg:p-4 lg:px-10"
+          >
+            Let's fix that!
+          </Link>
+        </div>
+      </Cardify>
+    );
   }
 
   return (

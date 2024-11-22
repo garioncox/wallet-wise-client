@@ -10,14 +10,14 @@ export const WalletIcon = () => {
       fill="#000000"
       transform="rotate(-15)"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0" />
+      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
 
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         stroke="#CCCCCC"
-        stroke-width="38.912"
+        strokeWidth="38.912"
       />
 
       <g id="SVGRepo_iconCarrier">
