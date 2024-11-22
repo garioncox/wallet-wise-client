@@ -18,7 +18,7 @@ export const getAllBudgetsAuth = async (id_token: string) => {
 
 export const getBudgetByCustomerId = async (id: number) => {
   const response = await axios.get(`/api/Budget/get/${id}`);
-  return response;
+  return response.data;
 };
 
 export const addBudget = async (dto: BudgetDTO) => {

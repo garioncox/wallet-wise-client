@@ -14,7 +14,7 @@ import {
   GDateInputController,
   useGDateInput,
 } from "../../Components/Generics/Controls/gDateInputControl";
-import { useAllBudgets } from "../../Functions/TanStack/BudgetQueries";
+import { useAllBudgetForCurrentCustomer } from "../../Functions/TanStack/BudgetQueries";
 import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
 
 export interface TransactionInputController {
@@ -27,7 +27,7 @@ export interface TransactionInputController {
 }
 
 export const useTransactionInput = () => {
-  const { data: allBudgets } = useAllBudgets();
+  const { data: allBudgets } = useAllBudgetForCurrentCustomer();
 
   const defaultFieldFunction = (s: string) =>
     s === "" ? "Field is required" : "";

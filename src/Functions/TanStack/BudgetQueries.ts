@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { queryKeys } from "./KeyFactory";
 import { queryClient } from "./QueryClient";
 import { BudgetDTO } from "../../Data/DTO/BudgetDTO";
+import { useCurrentCustomer } from "./CustomerQueries";
 
 export const useAllBudgets = () => {
   return useQuery({
@@ -25,6 +26,16 @@ export const useAllBudgetsAuth = () => {
     queryKey: ["budgets"],
     queryFn: () => getAllBudgetsAuth(auth.user?.id_token ?? ""),
     enabled: !!auth.user!.id_token,
+  });
+};
+
+export const useAllBudgetForCurrentCustomer = () => {
+  const { data: customer, isLoading } = useCurrentCustomer();
+
+  return useQuery({
+    queryKey: ["budgets"],
+    queryFn: async () => await getBudgetByCustomerId(customer.id),
+    enabled: !!(customer && !isLoading),
   });
 };
 

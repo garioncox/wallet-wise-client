@@ -11,6 +11,6 @@ export const callAuthApiEndpoint = async (id_token: string) => {
     });
     console.log("Response from AuthAPI: ", response.data);
   } catch {
-    console.log("Error");
+    console.log("Error calling auth endpoint");
   }
 };
