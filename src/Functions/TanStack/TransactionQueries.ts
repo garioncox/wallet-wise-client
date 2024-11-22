@@ -49,10 +49,10 @@ export const useAddTransactionMutation = () => {
         };
         await addBudgetTransactionEvent(bte);
       });
-
+    },
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.transactions });
       queryClient.invalidateQueries({ queryKey: queryKeys.budgetTransactions });
-
       toast.success("Successfully added transaction");
     },
     onError: () => toast.error("Error adding transaction"),
