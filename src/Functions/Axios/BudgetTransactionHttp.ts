@@ -6,3 +6,7 @@ export const addBudgetTransactionEvent = async (
 ) => {
   await axios.post(`/api/BudgetTransactionEvent/add`, bte);
 };
+
+export const getAllBudgetTransactionEventsForCustomer = async (customerId: number) => {
+  await axios.get(`/api/BudgetTransactionEvent/getAll/${customerId}`);
+};
