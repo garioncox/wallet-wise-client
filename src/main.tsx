@@ -13,10 +13,11 @@ import { BrowserRouter } from "react-router-dom";
 const oidcConfig: AuthProviderProps = {
   authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
   client_id: "garion-auth-class",
-  redirect_uri:
-    process.env.NODE_ENV === "production"
-      ? "https://garion-final.duckdns.org"
-      : "http://localhost:5173",
+  // redirect_uri:
+  //   process.env.NODE_ENV === "production"
+  //     ? "https://garion-final.duckdns.org"
+  //     : "http://localhost:5173",
+  redirect_uri: "https://garion-final.duckdns.org/",
   onSigninCallback: () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   },
