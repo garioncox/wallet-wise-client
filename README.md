@@ -217,9 +217,9 @@ Page work:
 
 Goals:
 
-- [ ] 4 pages complete
-- [ ] 2 reusable layout components
-- [ ] Page authorization complete
+- [x] 4 pages complete
+- [x] 2 reusable layout components
+- [x] Page authorization complete
 
 Page work:
 
