@@ -2,12 +2,12 @@ import GTextInput from "../Components/Generics/gTextInput";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useTransactionInput } from "./Control/TransactionInputControl";
 import { Spinner } from "../Components/Layout/Spinner";
-import GNumberInput from "../Components/Generics/gMoneyInput";
 import GDateInput from "../Components/Generics/gDateInput";
 import { Cardify } from "../Components/Layout/Cardify";
 import GSelectInput from "../Components/Generics/gSelectInput";
 import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
 import { Link } from "react-router-dom";
+import GMoneyInput from "../Components/Generics/gMoneyInput";
 
 export const TransactionInput = () => {
   const { data: budgets, isLoading } = useAllBudgetForCurrentCustomer();
@@ -41,7 +41,7 @@ export const TransactionInput = () => {
     <Cardify>
       <div className="flex flex-col">
         <div className="flex flex-row space-x-5">
-          <GNumberInput
+          <GMoneyInput
             label="Amount"
             control={control.amountControl}
             minimum={1}
