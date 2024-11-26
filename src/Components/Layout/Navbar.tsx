@@ -75,31 +75,4 @@ export const Navbar = () => {
       </div>
     </div>
   );
-
-  return (
-    <div className="bg-christi-500 text-christi-200 p-7 flex flex-grow flex-row shadow-lg text-xl">
-      <Link to={"/"} className="h-20 w-20 me-5">
-        <WalletIcon />
-      </Link>
-      <Link
-        to={"/"}
-        className="flex flex-row pe-10 pb-1 items-center font-semibold text-4xl hover:text-christi-100"
-      >
-        Wallet Wise
-      </Link>
-      <Link
-        to={"/transaction/input"}
-        className="flex flex-row text-2xl px-5 items-center font-semibold hover:text-christi-100"
-      >
-        Log Entry
-      </Link>
-      <Link
-        to={"/transaction/view"}
-        className="flex flex-row text-2xl items-center font-semibold hover:text-christi-100"
-      >
-        View History
-      </Link>
-      <LoginButton />
-    </div>
-  );
 };

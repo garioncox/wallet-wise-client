@@ -1,7 +1,9 @@
 import { useAuth } from "react-oidc-context";
+import { useNavigate } from "react-router-dom";
 
 function LoginButton() {
   const auth = useAuth();
+  const navigate = useNavigate();
 
   switch (auth.activeNavigator) {
     case "signinSilent":
@@ -27,7 +29,8 @@ function LoginButton() {
         viewBox="0 0 24 24"
         strokeWidth="1.5"
         stroke="currentColor"
-        className="size-12 me-5 hover:text-christi-100"
+        className="size-12 me-5 hover:text-christi-100 cursor-pointer"
+        onClick={() => navigate("/profile")}
       >
         <path
           strokeLinecap="round"

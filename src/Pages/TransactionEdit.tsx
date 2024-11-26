@@ -106,7 +106,7 @@ export const TransactionEdit = () => {
           onClick={control.submit}
           className="bg-christi-500 p-2 mt-5 rounded-lg text-stone-100 font-bold hover:bg-christi-600"
         >
-          Submit
+          Update Transaction
         </button>
       </div>
     </Cardify>

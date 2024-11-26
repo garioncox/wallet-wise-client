@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { Landing } from "./Pages/Landing";
 import { TransactionInput } from "./Pages/TransactionInput";
 import { TransactionHistory } from "./Pages/TransactionHistory";
-import { Test } from "./Pages/Test";
+import { Profile } from "./Pages/Profile";
 import { RequireAuth } from "./Components/Auth/RequireAuth";
 import BudgetInput from "./Pages/BudgetInput";
 import { BudgetStats } from "./Pages/BudgetStats";
@@ -41,10 +41,10 @@ function App() {
         }
       />
       <Route
-        path="/test"
+        path="/profile"
         element={
           <RequireAuth>
-            <Test />
+            <Profile />
           </RequireAuth>
         }
       />
