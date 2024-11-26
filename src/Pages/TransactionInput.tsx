@@ -1,7 +1,7 @@
 import GTextInput from "../Components/Generics/gTextInput";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useTransactionInput } from "./Control/TransactionInputControl";
-import { Spinner } from "../Components/Layout/Spinnex";
+import { Spinner } from "../Components/Layout/Spinner";
 import GNumberInput from "../Components/Generics/gMoneyInput";
 import GDateInput from "../Components/Generics/gDateInput";
 import { Cardify } from "../Components/Layout/Cardify";

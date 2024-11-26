@@ -1,7 +1,7 @@
 import { useGTextInput } from "../Components/Generics/Controls/gTextInputControl";
 import GTextInput from "../Components/Generics/gTextInput";
 import { Cardify } from "../Components/Layout/Cardify";
-import { Spinner } from "../Components/Layout/Spinnex";
+import { Spinner } from "../Components/Layout/Spinner";
 import { BudgetDTO } from "../Data/DTO/BudgetDTO";
 import {
   useAddBudgetMutation,

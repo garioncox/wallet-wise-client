@@ -1,26 +1,24 @@
 import { Route, Routes } from "react-router-dom";
 import { Landing } from "./Pages/Landing";
 import { TransactionInput } from "./Pages/TransactionInput";
-import { TransactionView } from "./Pages/TransactionView";
+import { TransactionHistory } from "./Pages/TransactionHistory";
 import { Test } from "./Pages/Test";
-import { useEffect } from "react";
-import { useAuth } from "react-oidc-context";
-import { callAuthApiEndpoint } from "./Functions/apiService";
 import { RequireAuth } from "./Components/Auth/RequireAuth";
 import BudgetInput from "./Pages/BudgetInput";
+import { BudgetStats } from "./Pages/BudgetStats";
 
 function App() {
-  const { user, isAuthenticated } = useAuth();
+  // const { user, isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    const call = async () => {
-      // console.log(`calling with... ${user?.id_token ?? ""}`);
-      await callAuthApiEndpoint(user?.id_token ?? "");
-    };
-    if (isAuthenticated) {
-      call();
-    }
-  }, [user, isAuthenticated]);
+  // useEffect(() => {
+  //   const call = async () => {
+  //     // console.log(`calling with... ${user?.id_token ?? ""}`);
+  //     await callAuthApiEndpoint(user?.id_token ?? "");
+  //   };
+  //   if (isAuthenticated) {
+  //     call();
+  //   }
+  // }, [user, isAuthenticated]);
 
   return (
     <Routes>
@@ -37,7 +35,7 @@ function App() {
         path="/transaction/view"
         element={
           <RequireAuth>
-            <TransactionView />
+            <TransactionHistory />
           </RequireAuth>
         }
       />
@@ -49,7 +47,22 @@ function App() {
           </RequireAuth>
         }
       />
-      <Route path="/budget/input" element={<BudgetInput />} />
+      <Route
+        path="/budget/input"
+        element={
+          <RequireAuth>
+            <BudgetInput />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/budget/stats/:budgetId"
+        element={
+          <RequireAuth>
+            <BudgetStats />
+          </RequireAuth>
+        }
+      ></Route>
     </Routes>
   );
 }

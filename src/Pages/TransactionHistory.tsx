@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Cardify } from "../Components/Layout/Cardify";
-import { Spinner } from "../Components/Layout/Spinnex";
+import { Spinner } from "../Components/Layout/Spinner";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useDateUtils } from "../Functions/DateUtils";
 import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
@@ -8,8 +8,10 @@ import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQuer
 import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStack/BudgetTransactionQueries";
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 import { Budget } from "../Data/Budget";
+import { Tablefy } from "../Components/Layout/Tablefy";
+import { useAuth } from "react-oidc-context";
 
-export const TransactionView = () => {
+export const TransactionHistory = () => {
   const { data: transactionEvents, isLoading: isTransactionsLoading } =
     useAllTransactionEventsForCurrentCustomer();
   const {
@@ -19,6 +21,8 @@ export const TransactionView = () => {
   const { data: budgets, isLoading: isBudgetsLoading } =
     useAllBudgetForCurrentCustomer();
   const dateUtils = useDateUtils();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   if (
     isTransactionsLoading ||
@@ -51,13 +55,14 @@ export const TransactionView = () => {
 
   return (
     <Cardify>
-      <div className="flex flex-col grow justify-items-stretch divide-y divide-slate-400">
-        <p className="mb-3 text-center font-bold text-xl">
-          Transactions for "Name"
-        </p>
+      <Tablefy header={`Transactions for ${user?.profile.name}`}>
         {transactionEvents.map((t: TransactionEvent) => {
           return (
-            <div className="grid grid-cols-4" key={t.id}>
+            <div
+              className="grid grid-cols-4 hover:bg-stone-300 cursor-pointer"
+              key={t.id}
+              onClick={() => navigate(`/transaction/edit/${t.id}`)}
+            >
               <p className="p-3">${t.amt}</p>
               <p className="p-3">{t.transactionName}</p>
               <p className="p-3">
@@ -74,7 +79,11 @@ export const TransactionView = () => {
                     return (
                       <div
                         key={bte.id}
-                        className="m-3 px-2 mx-1 bg-stone-50 items-center border rounded-full border-stone-500 flex flex-row text-nowrap align-middle justify-center"
+                        className="m-3 px-2 mx-1 bg-stone-50 items-center border rounded-full border-stone-500 flex flex-row text-nowrap align-middle justify-center cursor-pointer hover:bg-stone-200 hover:border-2 hover:border-blue-500"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/budget/stats/${bte.budgetId}`);
+                        }}
                       >
                         {budgets
                           .filter(
@@ -90,7 +99,7 @@ export const TransactionView = () => {
             </div>
           );
         })}
-      </div>
+      </Tablefy>
     </Cardify>
   );
 };
