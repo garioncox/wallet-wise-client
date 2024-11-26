@@ -64,12 +64,12 @@ export const TransactionHistory = () => {
               onClick={() => navigate(`/transaction/edit/${t.id}`)}
             >
               <p className="p-3">${t.amt}</p>
-              <p className="p-3">{t.transactionName}</p>
-              <p className="p-3">
+              <p className="p-3 order-2 lg:order-1">{t.transactionName}</p>
+              <p className="p-3 order-1 lg:order-2">
                 {dateUtils.convertToStandardString(new Date(t.transactionDate))}
               </p>
 
-              <div className="overflow-x-auto flex flex-row">
+              <div className="overflow-x-auto flex flex-row order-3">
                 {budgetTransactionEvents
                   .filter(
                     (bte: BudgetTransactionEvent) =>

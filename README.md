@@ -251,9 +251,9 @@ Page work:
 
 Goals:
 
-- [ ] 8 pages complete
-- [ ] 2 more reusable layout components
-- [ ] 2 pages where elements reorder on smaller screens
+- [x] 8 pages complete
+- [x] 2 more reusable layout components
+- [x] 2 pages where elements reorder on smaller screens
 
 Page work:
 
