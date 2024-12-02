@@ -283,7 +283,7 @@ Page work:
 
 Goals:
 
-- [ ] Developer type helping
+- [x] Developer type helping
 - [ ] 10 pages complete
 - [ ] All experiences mobile friendly
 - [ ] 2 more instances where elements reorder on smaller screens
