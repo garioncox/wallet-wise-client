@@ -7,6 +7,7 @@ import { RequireAuth } from "./Components/Auth/RequireAuth";
 import BudgetInput from "./Pages/BudgetInput";
 import { BudgetStats } from "./Pages/BudgetStats";
 import { TransactionEdit } from "./Pages/TransactionEdit";
+import { Dashboard } from "./Pages/Dashboard";
 
 function App() {
   // const { user, isAuthenticated } = useAuth();
@@ -69,6 +70,14 @@ function App() {
         element={
           <RequireAuth>
             <TransactionEdit />
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <Dashboard />
           </RequireAuth>
         }
       ></Route>

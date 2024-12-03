@@ -52,6 +52,12 @@ export const Navbar = () => {
           Wallet Wise
         </Link>
         <Link
+          to={"/dashboard"}
+          className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
+        >
+          Dashboard
+        </Link>
+        <Link
           to={"/transaction/input"}
           className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
         >
