@@ -1,8 +1,9 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
 export const Landing = () => {
   return (
-    <div className="lg:flex h-full bg-stone-200">
+    <div className="lg:flex bg-stone-200">
       <div className="p-4 lg:pt-4 lg:w-1/2 lg:h-full lg:flex lg:order-2">
         {/* Attribution to https://www.freepik.com/free-vector/checklist-budget-plan-clipboard-landing-page-template_21523796.htm */}
         <img
@@ -11,7 +12,7 @@ export const Landing = () => {
         />
       </div>
 
-      <div className=" text-stone-900 flex flex-col grow items-center justify-center lg:w-1/2 lg:h-full lg:ps-20">
+      <div className="text-stone-900 flex flex-col items-center justify-center lg:w-1/2 lg:h-full lg:ps-20">
         <p className="flex text-center text-bold text-4xl lg:text-6xl lg:font-semibold lg:pb-16">
           Take Control of Your Finances
         </p>

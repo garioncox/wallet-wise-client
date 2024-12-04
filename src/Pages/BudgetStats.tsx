@@ -10,6 +10,7 @@ import { Tablefy } from "../Components/Layout/Tablefy";
 import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
 import { Budget } from "../Data/Budget";
 import { useDateUtils } from "../Functions/DateUtils";
+import { PencilSquareIcon } from "@heroicons/react/20/solid";
 
 export const BudgetStats = () => {
   const { budgetId } = useParams();
@@ -55,6 +56,10 @@ export const BudgetStats = () => {
 
   return (
     <Cardify>
+      <PencilSquareIcon
+        className="h-10 w-10 text-stone-700 hover:text-stone-600 cursor-pointer"
+        onClick={() => navigate(`/budget/edit/${budgetId}`)}
+      />
       <Tablefy header={`${budgetFromParam?.budgetName ?? ""}`}>
         {allBTE
           .filter(

@@ -18,7 +18,7 @@ export const ProgressCircle = ({
             cy="18"
             r="16"
             fill="none"
-            className="stroke-current text-gray-200"
+            className="stroke-current text-stone-100"
             strokeWidth="2"
           />
           <circle

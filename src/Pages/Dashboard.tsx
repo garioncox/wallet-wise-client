@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Error } from "../Components/Error";
 import { Cardify } from "../Components/Layout/Cardify";
 import { ProgressCircle } from "../Components/Layout/ProgressCircle";
@@ -10,6 +11,8 @@ import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStac
 import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
 
 export const Dashboard = () => {
+  const navigate = useNavigate();
+
   const {
     data: allBTE,
     isLoading: isBTELoading,
@@ -73,11 +76,19 @@ export const Dashboard = () => {
       <div className="flex flex-wrap justify-center">
         {allBudgets.map((b: Budget) => {
           return (
-            <Cardify key={b.id}>
-              <div>{b.budgetName}</div>
+            <Cardify
+              key={b.id}
+              clickable={true}
+              onClick={() => navigate(`/budget/stats/${b.id}`)}
+            >
+              <div className="font-semibold text-2xl mb-2 pb-2 border-b border-stone-400">
+                {b.budgetName}
+              </div>
               <div className="mb-5">
-                Total:{" $"}
-                {getTotalExpensesForBudget(b)}
+                <span className="font-semibold border-b border-blue-600">
+                  ${getTotalExpensesForBudget(b)}
+                </span>{" "}
+                / ${getTotalExpenses()}
               </div>
               <ProgressCircle
                 usePercentage={true}

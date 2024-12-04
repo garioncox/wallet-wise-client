@@ -8,6 +8,7 @@ import BudgetInput from "./Pages/BudgetInput";
 import { BudgetStats } from "./Pages/BudgetStats";
 import { TransactionEdit } from "./Pages/TransactionEdit";
 import { Dashboard } from "./Pages/Dashboard";
+import BudgetEdit from "./Pages/BudgetEdit";
 
 function App() {
   // const { user, isAuthenticated } = useAuth();
@@ -62,6 +63,14 @@ function App() {
         element={
           <RequireAuth>
             <BudgetStats />
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/budget/edit/:budgetId"
+        element={
+          <RequireAuth>
+            <BudgetEdit />
           </RequireAuth>
         }
       ></Route>

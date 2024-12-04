@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   addBudget,
+  editBudget,
   getAllBudgets,
   getAllBudgetsAuth,
   getBudgetByCustomerId,
@@ -55,6 +56,19 @@ export const useAddBudgetMutation = () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.budgets });
       toast.success("Successfully added Budget");
     },
-    onError: () => toast.error("Error adding transaction"),
+    onError: () => toast.error("Error adding budget"),
+  });
+};
+
+export const useEditBudgetMutation = () => {
+  return useMutation({
+    mutationFn: async (budget: BudgetDTO) => {
+      await editBudget(budget);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.budgets });
+      toast.success("Successfully edited Budget");
+    },
+    onError: () => toast.error("Error editing budget"),
   });
 };

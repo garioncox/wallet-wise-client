@@ -24,3 +24,7 @@ export const getBudgetByCustomerId = async (id: number) => {
 export const addBudget = async (dto: BudgetDTO) => {
   await axios.post(`/api/Budget/add`, dto);
 };
+
+export const editBudget = async (dto: BudgetDTO) => {
+  await axios.put(`/api/Budget/edit`, dto);
+};
