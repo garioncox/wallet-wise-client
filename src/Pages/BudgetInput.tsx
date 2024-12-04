@@ -19,6 +19,7 @@ export const BudgetInput = () => {
 
   const submit = () => {
     const dto: BudgetDTO = {
+      id: null,
       budgetName: nameControl.value,
       customerId: customer.id,
     };
