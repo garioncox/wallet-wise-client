@@ -24,8 +24,14 @@ export const Navbar = () => {
 
         <div className={`w-full block ${isOpen ? "" : "hidden"} flex-grow`}>
           <Link
+            to={"/dashboard"}
+            className="flex flex-row ps-5 text-2xl items-center font-semibold hover:text-christi-100 py-3"
+          >
+            Dashboard
+          </Link>
+          <Link
             to={"/transaction/input"}
-            className="ps-5 text-2xl items-center font-semibold hover:text-christi-100"
+            className="flex flex-row ps-5 text-2xl items-center font-semibold hover:text-christi-100 py-3"
           >
             Log Entry
           </Link>
@@ -34,6 +40,12 @@ export const Navbar = () => {
             className="flex flex-row ps-5 text-2xl items-center font-semibold hover:text-christi-100 py-3"
           >
             View History
+          </Link>
+          <Link
+            to={"/budget/input"}
+            className="flex flex-row ps-5 text-2xl items-center font-semibold hover:text-christi-100 py-3"
+          >
+            Budget Input
           </Link>
           <div className="flex items-start ms-0 ps-3 pb-5">
             <LoginButton />

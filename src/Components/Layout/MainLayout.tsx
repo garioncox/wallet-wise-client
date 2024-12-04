@@ -4,9 +4,9 @@ import { Toaster } from "react-hot-toast";
 
 export const MainLayout = (props: { children: React.ReactNode }) => {
   return (
-    <div className="h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex h-full w-full bg-stone-100 justify-center items-center">
+      <div className="flex min-h-full w-full bg-stone-100 justify-center items-center">
         {props.children}
       </div>
       <Toaster position="bottom-right" reverseOrder={false} />

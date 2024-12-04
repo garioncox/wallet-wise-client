@@ -19,7 +19,7 @@ export const ProgressCircle = ({
             r="16"
             fill="none"
             className="stroke-current text-gray-200"
-            stroke-width="2"
+            strokeWidth="2"
           />
           <circle
             cx="18"
@@ -27,10 +27,10 @@ export const ProgressCircle = ({
             r="16"
             fill="none"
             className="stroke-current text-blue-600"
-            stroke-width="2"
-            stroke-dasharray="100"
-            stroke-dashoffset={100-progress}
-            stroke-linecap="round"
+            strokeWidth="2"
+            strokeDasharray="100"
+            strokeDashoffset={100 - progress}
+            strokeLinecap="round"
           />
         </svg>
 

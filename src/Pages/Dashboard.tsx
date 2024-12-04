@@ -64,23 +64,29 @@ export const Dashboard = () => {
     return <Error />;
   }
 
+  if (!allBudgets || allBudgets.length === 0) {
+    return <>No Data</>;
+  }
+
   return (
     <>
-      {allBudgets.map((b: Budget) => {
-        return (
-          <Cardify key={b.id}>
-            <div>{b.budgetName}</div>
-            <div className="mb-5">
-              Total:{" $"}
-              {getTotalExpensesForBudget(b)}
-            </div>
-            <ProgressCircle
-              usePercentage={true}
-              progress={Number(getPercentageExpenseString(b))}
-            />
-          </Cardify>
-        );
-      })}
+      <div className="flex flex-wrap justify-center">
+        {allBudgets.map((b: Budget) => {
+          return (
+            <Cardify key={b.id}>
+              <div>{b.budgetName}</div>
+              <div className="mb-5">
+                Total:{" $"}
+                {getTotalExpensesForBudget(b)}
+              </div>
+              <ProgressCircle
+                usePercentage={true}
+                progress={Number(getPercentageExpenseString(b))}
+              />
+            </Cardify>
+          );
+        })}
+      </div>
     </>
   );
 };
