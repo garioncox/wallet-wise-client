@@ -9,6 +9,7 @@ import { BudgetStats } from "./Pages/BudgetStats";
 import { TransactionEdit } from "./Pages/TransactionEdit";
 import { Dashboard } from "./Pages/Dashboard";
 import BudgetEdit from "./Pages/BudgetEdit";
+import { NotFound } from "./Pages/NotFound";
 
 function App() {
   // const { user, isAuthenticated } = useAuth();
@@ -90,6 +91,7 @@ function App() {
           </RequireAuth>
         }
       ></Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

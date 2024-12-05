@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const Landing = () => {
   return (
-    <div className="lg:flex bg-stone-100 pt-10">
+    <div className="lg:flex items-center bg-stone-100 pt-10">
       <div className="p-4 lg:pt-4 lg:w-1/2 lg:h-full lg:flex lg:order-2">
         {/* Attribution to https://www.freepik.com/free-vector/checklist-budget-plan-clipboard-landing-page-template_21523796.htm */}
         <img
