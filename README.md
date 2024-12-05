@@ -284,9 +284,9 @@ Page work:
 Goals:
 
 - [x] Developer type helping
-- [ ] 10 pages complete
-- [ ] All experiences mobile friendly
-- [ ] 2 more instances where elements reorder on smaller screens
+- [x] 10 pages complete
+- [x] All experiences mobile friendly
+- [x] 2 more instances where elements reorder on smaller screens
 
 | Score   | Technology                              |
 | ------- | --------------------------------------- |
