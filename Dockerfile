@@ -3,11 +3,10 @@ WORKDIR /app
 
 COPY package*.json /app/
 RUN npm install
-
 RUN npm install -D vitest
-RUN npm run test
 
 COPY . .
+RUN npm run test
 RUN npm run build
 
 #
