@@ -6,7 +6,6 @@ RUN npm install
 RUN npm install -D vitest
 
 COPY . .
-RUN npm run test
 RUN npm run build
 
 #

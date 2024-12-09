@@ -18,6 +18,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
+      - name: Test
+        run: |
+          npm install
+          npm run test
+
       - name: Build image
         run: |
           docker build -t garioncox/garion-final:${{ github.run_number }} \
