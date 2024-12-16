@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { queryClient } from "./QueryClient";
 import { queryKeys } from "./KeyFactory";
 import { CustomerDTO } from "../../Data/DTO/CustomerDTO";
-import { useAuth } from "react-oidc-context";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export const useAllCustomers = () => {
   return useQuery({
@@ -25,24 +25,24 @@ export const useCustomerByEmail = (email: string) => {
 };
 
 export const useCurrentCustomer = () => {
-  const { user, isLoading } = useAuth();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   return useQuery({
     queryKey: queryKeys.currentUser,
     queryFn: async () => {
       try {
-        return await getCustomerByEmail(user!.profile.email!);
+        return await getCustomerByEmail(user?.email ?? "");
       } catch {
         const dto: CustomerDTO = {
-          name: user?.profile.name ?? "",
-          email: user!.profile!.email!,
+          name: `${user!.given_name} ${user!.family_name}`,
+          email: user!.email!,
         };
 
         await addCustomer(dto);
-        return await getCustomerByEmail(user!.profile.email!);
+        return await getCustomerByEmail(user!.email!);
       }
     },
-    enabled: !!(user && !isLoading),
+    enabled: !!(user && !isLoading && isAuthenticated),
   });
 };
 

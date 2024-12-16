@@ -9,27 +9,43 @@ import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStac
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 import { Budget } from "../Data/Budget";
 import { Tablefy } from "../Components/Layout/Tablefy";
-import { useAuth } from "react-oidc-context";
+import { useCurrentCustomer } from "../Functions/TanStack/CustomerQueries";
+import { Error } from "./Error";
 
 export const TransactionHistory = () => {
-  const { data: transactionEvents, isLoading: isTransactionsLoading } =
-    useAllTransactionEventsForCurrentCustomer();
+  const {
+    data: transactionEvents,
+    isLoading: isTransactionsLoading,
+    isError: isTransactionsError,
+  } = useAllTransactionEventsForCurrentCustomer();
   const {
     data: budgetTransactionEvents,
     isLoading: isBudgetTransactionsLoading,
   } = useAllBudgetTransactionsForCurrentCustomer();
-  const { data: budgets, isLoading: isBudgetsLoading } =
-    useAllBudgetForCurrentCustomer();
+  const {
+    data: budgets,
+    isLoading: isBudgetsLoading,
+    isError: isBudgetsError,
+  } = useAllBudgetForCurrentCustomer();
   const dateUtils = useDateUtils();
-  const { user } = useAuth();
   const navigate = useNavigate();
+  const {
+    data: user,
+    isLoading: isCustomerLoading,
+    isError: isCustomerError,
+  } = useCurrentCustomer();
 
   if (
     isTransactionsLoading ||
     isBudgetsLoading ||
-    isBudgetTransactionsLoading
+    isBudgetTransactionsLoading ||
+    isCustomerLoading
   ) {
     return <Spinner />;
+  }
+
+  if (isTransactionsError || isBudgetsError || isCustomerError) {
+    return <Error />;
   }
 
   if (!transactionEvents || transactionEvents.length == 0) {
@@ -55,7 +71,16 @@ export const TransactionHistory = () => {
 
   return (
     <Cardify>
-      <Tablefy header={`Transactions for ${user?.profile.name}`}>
+      <Tablefy
+        header={`Transactions for ${
+          user.given_name
+            ? user.family_name
+              ? `${user.given_name} ${user.family_name}`
+              : user.given_name
+            : user.email
+        }
+        `}
+      >
         {transactionEvents.map((t: TransactionEvent) => {
           return (
             <div
