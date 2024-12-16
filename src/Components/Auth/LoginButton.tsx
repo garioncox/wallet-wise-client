@@ -1,25 +1,10 @@
-import { useAuth } from "react-oidc-context";
+import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth } from "react-oidc-context";
 import { useNavigate } from "react-router-dom";
 
 function LoginButton() {
-  const auth = useAuth();
   const navigate = useNavigate();
-
-  switch (auth.activeNavigator) {
-    case "signinSilent":
-      return <div>Signing you in...</div>;
-    case "signoutRedirect":
-      return <div>Signing you out...</div>;
-  }
-
-  if (auth.isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (auth.error) {
-    console.error(auth.error.message);
-    return <div>Oops...</div>;
-  }
+  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
 
   return (
     <div className="flex flex-row grow items-center font-semibold text-christi-200">
@@ -39,17 +24,19 @@ function LoginButton() {
         />
       </svg>
 
-      {auth.isAuthenticated ? (
+      {isAuthenticated ? (
         <button
           className="flex grow hover:text-christi-100"
-          onClick={() => void auth.removeUser()}
+          onClick={() =>
+            logout({ logoutParams: { returnTo: window.location.origin } })
+          }
         >
           Log out
         </button>
       ) : (
         <button
           className="hover:text-christi-100"
-          onClick={() => void auth.signinRedirect()}
+          onClick={() => loginWithRedirect()}
         >
           Log in
         </button>
