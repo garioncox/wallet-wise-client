@@ -1,8 +1,13 @@
 import React from "react";
 import { Navbar } from "./Navbar";
 import { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 export const MainLayout = (props: { children: React.ReactNode }) => {
+  axios.defaults.baseURL = import.meta.env.DEV
+    ? "http://localhost:5046"
+    : import.meta.env.VITE_DB_ADDR;
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
