@@ -2,30 +2,23 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
-import { AuthProvider, AuthProviderProps } from "react-oidc-context";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./Functions/TanStack/QueryClient.ts";
 import { MainLayout } from "./Components/Layout/MainLayout.tsx";
 import { ErrorBoundary } from "react-error-boundary";
 import { Error } from "./Pages/Error.tsx";
 import { BrowserRouter } from "react-router-dom";
-
-const oidcConfig: AuthProviderProps = {
-  authority: "https://auth.snowse.duckdns.org/realms/advanced-frontend/",
-  client_id: "garion-final",
-  redirect_uri:
-    process.env.NODE_ENV === "production"
-      ? "https://garion-final.duckdns.org/"
-      : "http://localhost:5173/",
-  onSigninCallback: () => {
-    window.history.replaceState({}, document.title, window.location.pathname);
-  },
-  automaticSilentRenew: true,
-};
+import { Auth0Provider } from "@auth0/auth0-react";
 
 createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <AuthProvider {...oidcConfig}>
+    <Auth0Provider
+      domain="dev-k4gmg3x4vel0mi7q.us.auth0.com"
+      clientId="ZFOZiL0TBMfGvjZU3t8k8dgl84jolRR8"
+      authorizationParams={{
+        redirect_uri: window.location.origin,
+      }}
+    >
       <StrictMode>
         <QueryClientProvider client={queryClient}>
           <MainLayout>
@@ -35,6 +28,6 @@ createRoot(document.getElementById("root")!).render(
           </MainLayout>
         </QueryClientProvider>
       </StrictMode>
-    </AuthProvider>
+    </Auth0Provider>
   </BrowserRouter>
 );

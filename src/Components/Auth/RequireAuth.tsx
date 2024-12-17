@@ -1,10 +1,15 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import { ReactNode } from "react";
-import { withAuthenticationRequired } from "react-oidc-context";
 
 export const RequireAuth = ({ children }: { children: ReactNode }) => {
-  const Protected = withAuthenticationRequired(() => <>{children}</>, {
-    OnRedirecting: () => <div>Redirecting to the login page...</div>,
-  });
+  const { isAuthenticated, loginWithRedirect, isLoading } = useAuth0();
 
-  return <Protected />;
+  if (isLoading) return <div>Loading...</div>;
+
+  if (!isAuthenticated) {
+    loginWithRedirect();
+    return null;
+  }
+
+  return <>{children}</>;
 };
