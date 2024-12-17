@@ -15,6 +15,9 @@ jobs:
     runs-on: [garion-ww-client]
     name: Build and Deploy Job
     steps:
+    - name: Clean workspace
+      run: |
+        sudo rm -rf * || true
       - uses: actions/checkout@v4
         with:
           submodules: true
