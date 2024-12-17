@@ -9,9 +9,9 @@ jobs:
   stop-bugging-me:
     runs-on: [garion-final-runner]
     steps:
-      -name: Dummy
-      run: |
-        pwd
+      - name: Test
+        run: |
+          pwd
   # build-and-deploy:
   #   runs-on: [garion-final-runner]
   #   steps:
