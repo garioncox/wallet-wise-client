@@ -57,6 +57,7 @@ export const useAddBudgetMutation = () => {
       toast.success("Successfully added Budget");
     },
     onError: () => toast.error("Error adding budget"),
+    mutationKey: queryKeys.addBudget,
   });
 };
 

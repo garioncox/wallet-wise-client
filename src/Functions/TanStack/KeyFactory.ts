@@ -5,4 +5,6 @@ export const queryKeys = {
   budgets: ["budgets"],
   transactions: ["transactions"],
   budgetTransactions: ["budgetTransactions"],
+
+  addBudget: ["addBudget"],
 };
