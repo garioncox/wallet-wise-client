@@ -7,10 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        // target: "http://garion-final.duckdns.org/",
         target: "http://localhost:5046",
         changeOrigin: true,
       },
     },
+  },
+  define: {
+    "process.env": process.env,
   },
 });
