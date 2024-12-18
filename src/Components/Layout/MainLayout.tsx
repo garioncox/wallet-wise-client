@@ -8,11 +8,6 @@ export const MainLayout = (props: { children: React.ReactNode }) => {
     ? "http://localhost:5046"
     : import.meta.env.VITE_DB_ADDR;
 
-    console.log("here: env is...")
-  console.log(
-    import.meta.env.DEV ? "http://localhost:5046" : import.meta.env.VITE_DB_ADDR
-  );
-
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
