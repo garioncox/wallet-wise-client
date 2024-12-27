@@ -9,6 +9,7 @@ import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
 import { useCustomer } from "./CustomerQueries";
 import { TransactionEvent } from "../../Data/TransactionEvent";
+import { BudgetTransactionEvent } from "../../Data/BudgetTransactionEvent";
 
 export const useAllCustomerTE = () => {
   const { data: user, isLoading } = useCustomer();
@@ -44,48 +45,54 @@ export const useAddTEMutation = () => {
       return { eventId, budgets };
     },
 
-    onMutate: async ({ transaction, budgets }) => {
-      await queryClient.cancelQueries({ queryKey: queryKeys.tes });
-      await queryClient.cancelQueries({ queryKey: queryKeys.btes });
+    onMutate: async ({
+      transaction,
+      budgets,
+    }: {
+      transaction: TransactionEventDTO;
+      budgets: Budget[];
+    }) => {
+      // Capture the previous state before mutation
+      const previousTEs = queryClient.getQueryData([queryKeys.tes]) || [];
+      const previousBTEs =
+        (queryClient.getQueryData([queryKeys.btes]) as
+          | BudgetTransactionEvent[]
+          | undefined) || [];
 
-      // Capture the previous state
-      const previousTEs = queryClient.getQueryData(queryKeys.tes);
-      const previousBTEs = queryClient.getQueryData(queryKeys.btes);
+      const optimisticTransactionId: number = Date.now();
 
-      const optimisticTransactionId = `optimistic-${Date.now()}`;
-
-      // Optimistically update the transaction event and associated budgets
+      // Optimistically update the transaction event
+      const optimisticTE: TransactionEvent = {
+        id: optimisticTransactionId,
+        transactionName: transaction.transactionName,
+        amt: transaction.amt,
+        transactionDate: transaction.transactionDate,
+        customerId: transaction.customerId,
+      };
       queryClient.setQueryData(
         queryKeys.tes,
-        (old: TransactionEvent[] | undefined) => [
-          ...(old || []),
-          {
-            ...transaction,
-            id: optimisticTransactionId,
-          },
-        ]
+        (old: TransactionEvent[] | undefined) => [...(old || []), optimisticTE]
       );
 
-      // Optimistically update the budget transaction events in parallel
-      budgets.forEach((budget) => {
-        queryClient.setQueryData(
-          queryKeys.btes,
-          (old: BudgetTransactionEventDTO[] | undefined) => [
-            ...(old || []),
-            {
-              transactionEventId: optimisticTransactionId,
-              budgetId: budget.id,
-            },
-          ]
-        );
+      // Optimistically update the budget transaction events without clearing the cache
+      queryClient.setQueryData([queryKeys.btes], () => {
+        // Use previousBTEs directly
+        const newBTEs = budgets.map((budget) => ({
+          id: null, // Null ID for optimistic updates
+          transactionEventId: optimisticTransactionId,
+          budgetId: budget.id,
+        }));
+
+        return [...previousBTEs, ...newBTEs];
       });
 
+      // Return the previous state so we can revert in case of error
       return { previousTEs, previousBTEs, optimisticTransactionId, budgets };
     },
 
     onError: (context?: {
-      previousTEs: TransactionEventDTO[] | undefined;
-      previousBTEs: BudgetTransactionEventDTO[] | undefined;
+      previousTEs: TransactionEvent[] | undefined;
+      previousBTEs: BudgetTransactionEvent[] | undefined;
     }) => {
       if (context) {
         queryClient.setQueryData(queryKeys.tes, context.previousTEs);
@@ -94,12 +101,9 @@ export const useAddTEMutation = () => {
       toast.error("Error adding transaction");
     },
 
-    onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.tes });
-      queryClient.invalidateQueries({ queryKey: queryKeys.btes });
-    },
-
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: queryKeys.tes });
+      queryClient.invalidateQueries({ queryKey: [queryKeys.btes] });
       toast.success(`Successfully added transaction`);
     },
   });

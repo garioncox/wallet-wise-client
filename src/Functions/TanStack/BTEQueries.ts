@@ -9,9 +9,8 @@ export const useAllCustomerBTE = () => {
   return useQuery({
     queryKey: [queryKeys.btes],
     queryFn: async () => {
-      if (!customer) return [];
       return await getAllCustomerBTE(customer.id);
     },
-    enabled: !!customer && !isLoading,
+    enabled: !!(customer && !isLoading),
   });
 };
