@@ -16,7 +16,6 @@ import GMoneyInput from "../Components/Generics/gMoneyInput";
 import GSelectInput from "../Components/Generics/gSelectInput";
 import GTextInput from "../Components/Generics/gTextInput";
 import { useTransactionInput } from "./Control/TransactionInputControl";
-import { useEffect } from "react";
 
 export const Test = () => {
   const {
@@ -41,13 +40,6 @@ export const Test = () => {
     isError: isCustomerError,
   } = useCustomer();
   const control = useTransactionInput();
-
-  useEffect(() => {
-    if (!isBudgetTransactionsLoading) {
-      console.log("btes in test");
-      console.log(budgetTransactionEvents);
-    }
-  }, [budgetTransactionEvents, isBudgetTransactionsLoading]);
 
   if (
     isTransactionsLoading ||

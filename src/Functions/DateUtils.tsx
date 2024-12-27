@@ -16,8 +16,8 @@ export const useDateUtils = () => {
 
   const convertToStandardString = (date: Date) => {
     return `${
-      monthNames[date.getMonth()]
-    } ${date.getDate()}, ${date.getFullYear()}`;
+      monthNames[date.getUTCMonth()]
+    } ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
   };
 
   return {

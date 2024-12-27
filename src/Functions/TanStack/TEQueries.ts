@@ -76,9 +76,8 @@ export const useAddTEMutation = () => {
 
       // Optimistically update the budget transaction events without clearing the cache
       queryClient.setQueryData([queryKeys.btes], () => {
-        // Use previousBTEs directly
         const newBTEs = budgets.map((budget) => ({
-          id: null, // Null ID for optimistic updates
+          id: null,
           transactionEventId: optimisticTransactionId,
           budgetId: budget.id,
         }));
