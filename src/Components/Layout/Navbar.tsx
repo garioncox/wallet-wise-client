@@ -10,19 +10,28 @@ export const Navbar = () => {
   return (
     <div>
       <div className="bg-christi-500 text-christi-200 lg:hidden">
-        <div className="p-7 flex flex-row items-center">
-          <div className="w-20 h-20 me-5">
+        <div className="px-5 py-3 flex flex-row items-center">
+          <Link to={"/"} className="w-20 h-20 me-5">
             <WalletIcon />
-          </div>
-          <div className="flex flex-row items-center font-semibold text-4xl hover:text-christi-100 me-auto">
+          </Link>
+          <Link
+            to={"/"}
+            className="flex flex-row items-center font-semibold text-4xl hover:text-christi-100 me-auto"
+          >
             Wallet Wise
-          </div>
+          </Link>
           <div className="h-10 w-10" onClick={() => setIsOpen(!isOpen)}>
             <Bars3Icon />
           </div>
         </div>
 
-        <div className={`w-full block ${isOpen ? "" : "hidden"} flex-grow`}>
+        <div
+          className={`w-full transition-all duration-500 ease-in-out transform ${
+            isOpen
+              ? "max-h-screen opacity-100 scale-100"
+              : "max-h-0 opacity-0 scale-95"
+          } overflow-hidden`}
+        >
           <Link
             to={"/dashboard"}
             className="flex flex-row ps-5 text-2xl items-center font-semibold hover:text-christi-100 py-3"
