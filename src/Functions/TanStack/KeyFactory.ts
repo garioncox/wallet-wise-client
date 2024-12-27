@@ -3,8 +3,8 @@ export const queryKeys = {
   customers: ["customers"],
   currentUser: ["currentUser"],
   budgets: ["budgets"],
-  transactions: ["transactions"],
-  budgetTransactions: ["budgetTransactions"],
+  tes: ["transactions"],
+  btes: ["budgetTransactions"],
 
   addBudget: ["addBudget"],
 };

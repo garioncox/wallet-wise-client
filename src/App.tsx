@@ -10,6 +10,7 @@ import { TransactionEdit } from "./Pages/TransactionEdit";
 import { Dashboard } from "./Pages/Dashboard";
 import BudgetEdit from "./Pages/BudgetEdit";
 import { NotFound } from "./Pages/NotFound";
+import { Test } from "./Pages/test";
 
 function App() {
   // const { user, isAuthenticated } = useAuth();
@@ -88,6 +89,14 @@ function App() {
         element={
           <RequireAuth>
             <Dashboard />
+          </RequireAuth>
+        }
+      ></Route>
+      <Route
+        path="/test"
+        element={
+          <RequireAuth>
+            <Test />
           </RequireAuth>
         }
       ></Route>

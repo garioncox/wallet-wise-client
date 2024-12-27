@@ -14,41 +14,38 @@ import { Error } from "./Error";
 
 export const TransactionHistory = () => {
   const {
-    data: transactionEvents,
-    isLoading: isTransactionsLoading,
-    isError: isTransactionsError,
+    data: TEs,
+    isLoading: isTELoading,
+    isError: isTEError,
   } = useAllCustomerTE();
   const {
-    data: budgetTransactionEvents,
-    isLoading: isBudgetTransactionsLoading,
+    data: BTEs,
+    isLoading: isBTELoading,
+    isError: isBTEError,
   } = useAllCustomerBTE();
   const {
     data: budgets,
     isLoading: isBudgetsLoading,
     isError: isBudgetsError,
   } = useAllCustomerBudgets();
-  const dateUtils = useDateUtils();
-  const navigate = useNavigate();
   const {
     data: user,
     isLoading: isCustomerLoading,
     isError: isCustomerError,
   } = useCustomer();
 
-  if (
-    isTransactionsLoading ||
-    isBudgetsLoading ||
-    isBudgetTransactionsLoading ||
-    isCustomerLoading
-  ) {
+  const dateUtils = useDateUtils();
+  const navigate = useNavigate();
+
+  if (isTELoading || isBudgetsLoading || isBTELoading || isCustomerLoading) {
     return <Spinner />;
   }
 
-  if (isTransactionsError || isBudgetsError || isCustomerError) {
+  if (isTEError || isBudgetsError || isBTEError || isCustomerError) {
     return <Error />;
   }
 
-  if (!transactionEvents || transactionEvents.length == 0) {
+  if (!TEs || TEs.length == 0) {
     return (
       <Cardify>
         <p className="text-3xl text-center text-slate-600 pb-20">
@@ -81,45 +78,43 @@ export const TransactionHistory = () => {
         }
         `}
       >
-        {transactionEvents.map((t: TransactionEvent) => {
+        {TEs.map((t: TransactionEvent) => {
           return (
             <div
               className="grid grid-cols-4 hover:bg-stone-300 cursor-pointer"
               key={t.id}
               onClick={() => navigate(`/transaction/edit/${t.id}`)}
             >
+              {/* Transaction Details */}
               <p className="p-3">${t.amt}</p>
               <p className="p-3 order-2 lg:order-1">{t.transactionName}</p>
               <p className="p-3 order-1 lg:order-2">
                 {dateUtils.convertToStandardString(new Date(t.transactionDate))}
               </p>
 
+              {/* Budgets Scroll Section */}
               <div className="overflow-x-auto flex flex-row order-3">
-                {budgetTransactionEvents
-                  .filter(
-                    (bte: BudgetTransactionEvent) =>
-                      bte.transactionEventId === t.id
-                  )
-                  .map((bte: BudgetTransactionEvent) => {
-                    return (
-                      <div
-                        key={bte.id}
-                        className="m-3 px-2 mx-1 bg-stone-50 items-center border rounded-full border-stone-500 flex flex-row text-nowrap align-middle justify-center cursor-pointer hover:bg-stone-200 hover:border-2 hover:border-blue-500"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`/budget/stats/${bte.budgetId}`);
-                        }}
-                      >
-                        {budgets
-                          .filter(
-                            (budget: Budget) => budget.id === bte.budgetId
-                          )
-                          .map((budget: Budget) => (
-                            <span key={budget.id}>{budget.budgetName}</span>
-                          ))}
-                      </div>
-                    );
-                  })}
+                {BTEs.filter(
+                  (bte: BudgetTransactionEvent) =>
+                    bte.transactionEventId === t.id
+                ).map((bte: BudgetTransactionEvent) => {
+                  return (
+                    <div
+                      key={bte.id}
+                      className="m-3 px-2 mx-1 bg-stone-50 items-center border rounded-full border-stone-500 flex flex-row text-nowrap align-middle justify-center cursor-pointer hover:bg-blue-200 hover:border-blue-500"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/budget/stats/${bte.budgetId}`);
+                      }}
+                    >
+                      {budgets
+                        .filter((budget: Budget) => budget.id === bte.budgetId)
+                        .map((budget: Budget) => (
+                          <span key={budget.id}>{budget.budgetName}</span>
+                        ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           );

@@ -96,6 +96,12 @@ export const Navbar = () => {
         >
           Budget Input
         </Link>
+        <Link
+          to={"/test"}
+          className="flex flex-row text-2xl ps-5 items-center font-semibold hover:text-christi-100"
+        >
+          Test
+        </Link>
         <div className="flex ms-auto me-5">
           <LoginButton />
         </div>

@@ -75,7 +75,7 @@ export const useTransactionInput = () => {
       ),
     });
 
-    navigate("/");
+    // navigate("/");
   };
 
   const validateFields = () => {

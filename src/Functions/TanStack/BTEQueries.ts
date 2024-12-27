@@ -7,10 +7,11 @@ export const useAllCustomerBTE = () => {
   const { data: customer, isLoading } = useCustomer();
 
   return useQuery({
-    queryKey: [queryKeys.budgetTransactions],
+    queryKey: [queryKeys.btes],
     queryFn: async () => {
+      if (!customer) return [];
       return await getAllCustomerBTE(customer.id);
     },
-    enabled: !!(customer && !isLoading),
+    enabled: !!customer && !isLoading,
   });
 };

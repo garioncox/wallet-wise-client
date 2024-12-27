@@ -9,10 +9,7 @@ import { useDateUtils } from "../Functions/DateUtils";
 import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
 import { useAllCustomerBTE } from "../Functions/TanStack/BTEQueries";
 import { useCustomer } from "../Functions/TanStack/CustomerQueries";
-import {
-  useAddTEMutation,
-  useAllCustomerTE,
-} from "../Functions/TanStack/TEQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import GDateInput from "../Components/Generics/gDateInput";
 import GMoneyInput from "../Components/Generics/gMoneyInput";
@@ -43,7 +40,6 @@ export const Test = () => {
     isError: isCustomerError,
   } = useCustomer();
   const control = useTransactionInput();
-  const addTransactionMutation = useAddTEMutation();
 
   if (
     isTransactionsLoading ||
@@ -130,35 +126,9 @@ export const Test = () => {
       <Cardify>
         <Tablefy
           header={`Transactions for ${
-            user.given_name
-              ? user.family_name
-                ? `${user.given_name} ${user.family_name}`
-                : user.given_name
-              : user.email
-          }
-        `}
+            user.given_name ? user.given_name : user.email
+          }`}
         >
-          {addTransactionMutation.isPending && (
-            <div
-              key={String(addTransactionMutation.submittedAt)}
-              style={{ opacity: 0.5 }}
-              className="bg-red-500"
-            >
-              <p className="p-3">
-                ${addTransactionMutation.variables.transaction.amt}
-              </p>
-              <p className="p-3 order-2 lg:order-1">
-                {addTransactionMutation.variables.transaction.transactionName}
-              </p>
-              <p className="p-3 order-1 lg:order-2">
-                {dateUtils.convertToStandardString(
-                  new Date(
-                    addTransactionMutation.variables.transaction.transactionDate
-                  )
-                )}
-              </p>{" "}
-            </div>
-          )}
           {transactionEvents.map((t: TransactionEvent) => {
             return (
               <div

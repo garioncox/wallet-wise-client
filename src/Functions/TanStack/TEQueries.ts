@@ -8,12 +8,13 @@ import toast from "react-hot-toast";
 import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
 import { useCustomer } from "./CustomerQueries";
+import { TransactionEvent } from "../../Data/TransactionEvent";
 
 export const useAllCustomerTE = () => {
   const { data: user, isLoading } = useCustomer();
 
   return useQuery({
-    queryKey: queryKeys.transactions,
+    queryKey: queryKeys.tes,
     queryFn: () => {
       return getAllTEByEmail(user!.email);
     },
@@ -31,21 +32,75 @@ export const useAddTEMutation = () => {
       budgets: Budget[];
     }) => {
       const eventId = await addTE(transaction);
-      budgets.forEach(async (b) => {
-        const bte: BudgetTransactionEventDTO = {
-          transactionEventId: eventId,
-          budgetId: b.id,
-        };
-        await addBTE(bte);
+      await Promise.all(
+        budgets.map(async (b) => {
+          const bte: BudgetTransactionEventDTO = {
+            transactionEventId: eventId,
+            budgetId: b.id,
+          };
+          await addBTE(bte);
+        })
+      );
+      return { eventId, budgets };
+    },
+
+    onMutate: async ({ transaction, budgets }) => {
+      await queryClient.cancelQueries({ queryKey: queryKeys.tes });
+      await queryClient.cancelQueries({ queryKey: queryKeys.btes });
+
+      // Capture the previous state
+      const previousTEs = queryClient.getQueryData(queryKeys.tes);
+      const previousBTEs = queryClient.getQueryData(queryKeys.btes);
+
+      const optimisticTransactionId = `optimistic-${Date.now()}`;
+
+      // Optimistically update the transaction event and associated budgets
+      queryClient.setQueryData(
+        queryKeys.tes,
+        (old: TransactionEvent[] | undefined) => [
+          ...(old || []),
+          {
+            ...transaction,
+            id: optimisticTransactionId,
+          },
+        ]
+      );
+
+      // Optimistically update the budget transaction events in parallel
+      budgets.forEach((budget) => {
+        queryClient.setQueryData(
+          queryKeys.btes,
+          (old: BudgetTransactionEventDTO[] | undefined) => [
+            ...(old || []),
+            {
+              transactionEventId: optimisticTransactionId,
+              budgetId: budget.id,
+            },
+          ]
+        );
       });
+
+      return { previousTEs, previousBTEs, optimisticTransactionId, budgets };
     },
+
+    onError: (context?: {
+      previousTEs: TransactionEventDTO[] | undefined;
+      previousBTEs: BudgetTransactionEventDTO[] | undefined;
+    }) => {
+      if (context) {
+        queryClient.setQueryData(queryKeys.tes, context.previousTEs);
+        queryClient.setQueryData(queryKeys.btes, context.previousBTEs);
+      }
+      toast.error("Error adding transaction");
+    },
+
     onSettled: () => {
-      queryClient.invalidateQueries({ queryKey: queryKeys.transactions });
-      queryClient.invalidateQueries({ queryKey: queryKeys.budgetTransactions });
+      queryClient.invalidateQueries({ queryKey: queryKeys.tes });
+      queryClient.invalidateQueries({ queryKey: queryKeys.btes });
     },
+
     onSuccess: () => {
-      toast.success("Successfully added transaction");
+      toast.success(`Successfully added transaction`);
     },
-    onError: () => toast.error("Error adding transaction"),
   });
 };
