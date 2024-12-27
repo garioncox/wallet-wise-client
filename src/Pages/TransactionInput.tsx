@@ -5,12 +5,12 @@ import { Spinner } from "../Components/Layout/Spinner";
 import GDateInput from "../Components/Generics/gDateInput";
 import { Cardify } from "../Components/Layout/Cardify";
 import GSelectInput from "../Components/Generics/gSelectInput";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
 import { Link } from "react-router-dom";
 import GMoneyInput from "../Components/Generics/gMoneyInput";
 
 export const TransactionInput = () => {
-  const { data: budgets, isLoading } = useAllBudgetForCurrentCustomer();
+  const { data: budgets, isLoading } = useAllCustomerBudgets();
 
   const control = useTransactionInput();
 

@@ -3,13 +3,13 @@ import { Cardify } from "../Components/Layout/Cardify";
 import { Spinner } from "../Components/Layout/Spinner";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useDateUtils } from "../Functions/DateUtils";
-import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
-import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStack/BudgetTransactionQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBTE } from "../Functions/TanStack/BTEQueries";
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 import { Budget } from "../Data/Budget";
 import { Tablefy } from "../Components/Layout/Tablefy";
-import { useCurrentCustomer } from "../Functions/TanStack/CustomerQueries";
+import { useCustomer } from "../Functions/TanStack/CustomerQueries";
 import { Error } from "./Error";
 
 export const TransactionHistory = () => {
@@ -17,23 +17,23 @@ export const TransactionHistory = () => {
     data: transactionEvents,
     isLoading: isTransactionsLoading,
     isError: isTransactionsError,
-  } = useAllTransactionEventsForCurrentCustomer();
+  } = useAllCustomerTE();
   const {
     data: budgetTransactionEvents,
     isLoading: isBudgetTransactionsLoading,
-  } = useAllBudgetTransactionsForCurrentCustomer();
+  } = useAllCustomerBTE();
   const {
     data: budgets,
     isLoading: isBudgetsLoading,
     isError: isBudgetsError,
-  } = useAllBudgetForCurrentCustomer();
+  } = useAllCustomerBudgets();
   const dateUtils = useDateUtils();
   const navigate = useNavigate();
   const {
     data: user,
     isLoading: isCustomerLoading,
     isError: isCustomerError,
-  } = useCurrentCustomer();
+  } = useCustomer();
 
   if (
     isTransactionsLoading ||

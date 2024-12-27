@@ -1,38 +1,27 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  addTransactionEvent,
-  getAllTransactionEvents,
-  getAllTransactionEventsByEmail,
-} from "../Axios/TransactionHttp";
+import { addTE, getAllTEByEmail } from "../Axios/TransactionHttp";
 import { queryKeys } from "./KeyFactory";
 import { Budget } from "../../Data/Budget";
-import { addBudgetTransactionEvent } from "../Axios/BudgetTransactionHttp";
+import { addBTE } from "../Axios/BudgetTransactionHttp";
 import { queryClient } from "./QueryClient";
 import toast from "react-hot-toast";
 import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import { BudgetTransactionEventDTO } from "../../Data/DTO/BudgetTransactionEventDTO";
-import { useCurrentCustomer } from "./CustomerQueries";
+import { useCustomer } from "./CustomerQueries";
 
-export const useAllTransactionEvents = () => {
-  return useQuery({
-    queryKey: queryKeys.transactions,
-    queryFn: getAllTransactionEvents,
-  });
-};
-
-export const useAllTransactionEventsForCurrentCustomer = () => {
-  const { data: user, isLoading } = useCurrentCustomer();
+export const useAllCustomerTE = () => {
+  const { data: user, isLoading } = useCustomer();
 
   return useQuery({
     queryKey: queryKeys.transactions,
     queryFn: () => {
-      return getAllTransactionEventsByEmail(user!.email);
+      return getAllTEByEmail(user!.email);
     },
     enabled: !!(user && !isLoading),
   });
 };
 
-export const useAddTransactionMutation = () => {
+export const useAddTEMutation = () => {
   return useMutation({
     mutationFn: async ({
       transaction,
@@ -41,18 +30,20 @@ export const useAddTransactionMutation = () => {
       transaction: TransactionEventDTO;
       budgets: Budget[];
     }) => {
-      const eventId = await addTransactionEvent(transaction);
+      const eventId = await addTE(transaction);
       budgets.forEach(async (b) => {
         const bte: BudgetTransactionEventDTO = {
           transactionEventId: eventId,
           budgetId: b.id,
         };
-        await addBudgetTransactionEvent(bte);
+        await addBTE(bte);
       });
     },
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.transactions });
       queryClient.invalidateQueries({ queryKey: queryKeys.budgetTransactions });
+    },
+    onSuccess: () => {
       toast.success("Successfully added transaction");
     },
     onError: () => toast.error("Error adding transaction"),

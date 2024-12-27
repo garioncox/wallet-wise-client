@@ -1,15 +1,15 @@
 import { Cardify } from "../Components/Layout/Cardify";
 import { Spinner } from "../Components/Layout/Spinner";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
-import { useCurrentCustomer } from "../Functions/TanStack/CustomerQueries";
-import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
+import { useCustomer } from "../Functions/TanStack/CustomerQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
 
 export const Profile = () => {
-  const { data: user, isLoading } = useCurrentCustomer();
+  const { data: user, isLoading } = useCustomer();
   const { data: budgets, isLoading: isBudgetsLoading } =
-    useAllBudgetForCurrentCustomer();
+    useAllCustomerBudgets();
   const { data: transactions, isLoading: isTransactionsLoading } =
-    useAllTransactionEventsForCurrentCustomer();
+    useAllCustomerTE();
 
   if (isLoading || isBudgetsLoading || isTransactionsLoading) {
     return <Spinner />;

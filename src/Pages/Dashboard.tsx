@@ -6,9 +6,9 @@ import { Spinner } from "../Components/Layout/Spinner";
 import { Budget } from "../Data/Budget";
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 import { TransactionEvent } from "../Data/TransactionEvent";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
-import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStack/BudgetTransactionQueries";
-import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBTE } from "../Functions/TanStack/BTEQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
@@ -17,17 +17,17 @@ export const Dashboard = () => {
     data: allBTE,
     isLoading: isBTELoading,
     isError: isBTEError,
-  } = useAllBudgetTransactionsForCurrentCustomer();
+  } = useAllCustomerBTE();
   const {
     data: allTransactionEvents,
     isLoading: isTransactionsLoading,
     isError: isTransactionsError,
-  } = useAllTransactionEventsForCurrentCustomer();
+  } = useAllCustomerTE();
   const {
     data: allBudgets,
     isLoading: isBudgetsLoading,
     isError: isBudgetsError,
-  } = useAllBudgetForCurrentCustomer();
+  } = useAllCustomerBudgets();
 
   const getTotalExpensesForBudget = (b: Budget) => {
     const relevantBTEs = allBTE.filter(

@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStack/BudgetTransactionQueries";
-import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
+import { useAllCustomerBTE } from "../Functions/TanStack/BTEQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
 import { Spinner } from "../Components/Layout/Spinner";
 import { Error } from "./Error";
 import { Cardify } from "../Components/Layout/Cardify";
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { Tablefy } from "../Components/Layout/Tablefy";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
 import { Budget } from "../Data/Budget";
 import { useDateUtils } from "../Functions/DateUtils";
 import { PencilSquareIcon } from "@heroicons/react/20/solid";
@@ -21,17 +21,17 @@ export const BudgetStats = () => {
     data: allBTE,
     isLoading: isBTELoading,
     isError: isBTEError,
-  } = useAllBudgetTransactionsForCurrentCustomer();
+  } = useAllCustomerBTE();
   const {
     data: allTransactionEvents,
     isLoading: isTransactionsLoading,
     isError: isTransactionsError,
-  } = useAllTransactionEventsForCurrentCustomer();
+  } = useAllCustomerTE();
   const {
     data: allBudgets,
     isLoading: isBudgetsLoading,
     isError: isBudgetsError,
-  } = useAllBudgetForCurrentCustomer();
+  } = useAllCustomerBudgets();
 
   const budgetFromParam: Budget | undefined = allBudgets
     ? allBudgets.find((b: Budget) => b.id === Number(budgetId))

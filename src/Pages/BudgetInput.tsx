@@ -7,11 +7,11 @@ import {
   useAddBudgetMutation,
   useAllBudgets,
 } from "../Functions/TanStack/BudgetQueries";
-import { useCurrentCustomer } from "../Functions/TanStack/CustomerQueries";
+import { useCustomer } from "../Functions/TanStack/CustomerQueries";
 
 export const BudgetInput = () => {
   const { isLoading } = useAllBudgets();
-  const { data: customer, isLoading: isCustomerLoading } = useCurrentCustomer();
+  const { data: customer, isLoading: isCustomerLoading } = useCustomer();
   const addBudgetMutation = useAddBudgetMutation();
   const nameControl = useGTextInput("", (s: string) =>
     s === "" ? "Field is required" : ""

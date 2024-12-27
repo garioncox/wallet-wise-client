@@ -6,10 +6,10 @@ import { Spinner } from "../Components/Layout/Spinner";
 import { Budget } from "../Data/Budget";
 import { BudgetDTO } from "../Data/DTO/BudgetDTO";
 import {
-  useAllBudgetForCurrentCustomer,
+  useAllCustomerBudgets,
   useEditBudgetMutation,
 } from "../Functions/TanStack/BudgetQueries";
-import { useCurrentCustomer } from "../Functions/TanStack/CustomerQueries";
+import { useCustomer } from "../Functions/TanStack/CustomerQueries";
 import { useEffect } from "react";
 
 export const BudgetEdit = () => {
@@ -17,9 +17,9 @@ export const BudgetEdit = () => {
   const navigate = useNavigate();
   const editBudgetMutation = useEditBudgetMutation();
 
-  const { data: customer, isLoading: isCustomerLoading } = useCurrentCustomer();
+  const { data: customer, isLoading: isCustomerLoading } = useCustomer();
   const { data: allBudgets, isLoading: isBudgetsLoading } =
-    useAllBudgetForCurrentCustomer();
+    useAllCustomerBudgets();
 
   const budgetFromParam: Budget | undefined = allBudgets
     ? allBudgets.find((b: Budget) => b.id === Number(budgetId))

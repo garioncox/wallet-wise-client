@@ -1,30 +1,12 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import {
-  addCustomer,
-  getAllCustomers,
-  getCustomerByEmail,
-} from "../Axios/CustomerHttp";
+import { addCustomer, getCustomerByEmail } from "../Axios/CustomerHttp";
 import toast from "react-hot-toast";
 import { queryClient } from "./QueryClient";
 import { queryKeys } from "./KeyFactory";
 import { CustomerDTO } from "../../Data/DTO/CustomerDTO";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export const useAllCustomers = () => {
-  return useQuery({
-    queryKey: queryKeys.customers,
-    queryFn: getAllCustomers,
-  });
-};
-
-export const useCustomerByEmail = (email: string) => {
-  return useQuery({
-    queryKey: [queryKeys.customers, email],
-    queryFn: async () => await getCustomerByEmail(email),
-  });
-};
-
-export const useCurrentCustomer = () => {
+export const useCustomer = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   return useQuery({

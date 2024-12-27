@@ -5,14 +5,14 @@ import GSelectInput from "../Components/Generics/gSelectInput";
 import GTextInput from "../Components/Generics/gTextInput";
 import { Cardify } from "../Components/Layout/Cardify";
 import { Spinner } from "../Components/Layout/Spinner";
-import { useAllBudgetForCurrentCustomer } from "../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBudgets } from "../Functions/TanStack/BudgetQueries";
 import GMoneyInput from "../Components/Generics/gMoneyInput";
 import { useTransactionInput } from "./Control/TransactionInputControl";
 import { Budget } from "../Data/Budget";
-import { useAllTransactionEventsForCurrentCustomer } from "../Functions/TanStack/TransactionQueries";
+import { useAllCustomerTE } from "../Functions/TanStack/TEQueries";
 import { TransactionEvent } from "../Data/TransactionEvent";
 import { useEffect } from "react";
-import { useAllBudgetTransactionsForCurrentCustomer } from "../Functions/TanStack/BudgetTransactionQueries";
+import { useAllCustomerBTE } from "../Functions/TanStack/BTEQueries";
 import { BudgetTransactionEvent } from "../Data/BudgetTransactionEvent";
 
 export const TransactionEdit = () => {
@@ -20,16 +20,15 @@ export const TransactionEdit = () => {
   const control = useTransactionInput();
 
   const { data: transactions, isLoading: isTransactionsLoading } =
-    useAllTransactionEventsForCurrentCustomer();
+    useAllCustomerTE();
   const transactionFromParam: TransactionEvent | undefined = transactions
     ? transactions.find((t: TransactionEvent) => t.id === Number(transactionId))
     : undefined;
 
   const { data: budgets, isLoading: isBudgetsLoading } =
-    useAllBudgetForCurrentCustomer();
+    useAllCustomerBudgets();
 
-  const { data: btes, isLoading: isBtesLoading } =
-    useAllBudgetTransactionsForCurrentCustomer();
+  const { data: btes, isLoading: isBtesLoading } = useAllCustomerBTE();
 
   useEffect(() => {
     if (transactionFromParam) {

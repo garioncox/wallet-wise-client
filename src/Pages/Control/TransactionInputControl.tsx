@@ -4,7 +4,7 @@ import {
 } from "../../Components/Generics/Controls/gTextInputControl";
 import { Budget } from "../../Data/Budget";
 import toast from "react-hot-toast";
-import { useAddTransactionMutation } from "../../Functions/TanStack/TransactionQueries";
+import { useAddTEMutation } from "../../Functions/TanStack/TEQueries";
 import { TransactionEventDTO } from "../../Data/DTO/TransactionEventDTO";
 import {
   GMoneyInputControl,
@@ -14,9 +14,9 @@ import {
   GDateInputController,
   useGDateInput,
 } from "../../Components/Generics/Controls/gDateInputControl";
-import { useAllBudgetForCurrentCustomer } from "../../Functions/TanStack/BudgetQueries";
+import { useAllCustomerBudgets } from "../../Functions/TanStack/BudgetQueries";
 import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
-import { useCurrentCustomer } from "../../Functions/TanStack/CustomerQueries";
+import { useCustomer } from "../../Functions/TanStack/CustomerQueries";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -31,9 +31,9 @@ export interface TransactionInputController {
 
 export const useTransactionInput = () => {
   const navigate = useNavigate();
-  const { data: allBudgets, isLoading } = useAllBudgetForCurrentCustomer();
-  const { data: user } = useCurrentCustomer();
-  const addTransactionMutation = useAddTransactionMutation();
+  const { data: allBudgets, isLoading } = useAllCustomerBudgets();
+  const { data: user } = useCustomer();
+  const addTransactionMutation = useAddTEMutation();
 
   const defaultFieldFunction = (s: string) =>
     s === "" ? "Field is required" : "";
