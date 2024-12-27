@@ -52,6 +52,8 @@ export const TransactionEdit = () => {
       const b = budgets.filter((b: Budget) => {
         budgetIds.includes(b.id);
       });
+
+      console.log(b);
     }
   }, [btes, transactionId, budgets]);
   // TODO: Not getting all the budgets correctly for a transaction.

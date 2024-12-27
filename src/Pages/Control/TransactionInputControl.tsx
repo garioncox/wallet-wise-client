@@ -18,7 +18,6 @@ import { useAllCustomerBudgets } from "../../Functions/TanStack/BudgetQueries";
 import { useGSelectInput } from "../../Components/Generics/Controls/gSelectInputControl";
 import { useCustomer } from "../../Functions/TanStack/CustomerQueries";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 export interface TransactionInputController {
   nameControl: GTextInputController;
@@ -30,7 +29,6 @@ export interface TransactionInputController {
 }
 
 export const useTransactionInput = () => {
-  const navigate = useNavigate();
   const { data: allBudgets, isLoading } = useAllCustomerBudgets();
   const { data: user } = useCustomer();
   const addTransactionMutation = useAddTEMutation();
